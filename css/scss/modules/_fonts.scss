@@ -1,0 +1,33 @@
+// choose own Fonts, recommend using 400 insted of normal and so on...
+
+@font-face {
+    font-family: "Supreme";
+    src: url("/fonts/Supreme-Regular.otf") format("opentype");
+    font-weight: normal;
+}
+@font-face {
+    font-family: "Supreme";
+    src: url("/fonts/Supreme-Bold.otf") format("opentype");
+    font-weight: bold;
+}
+@font-face {
+    font-family: "Supreme";
+    src: url("/fonts/Supreme-ExtraboldItalic.otf") format("opentype");
+    font-weight: bolder;
+}
+@font-face {
+    font-family: "Supreme";
+    src: url("/fonts/Supreme-Light.otf") format("opentype");
+    font-weight: lighter;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: url("/fonts/Poppins-Regular.ttf") format("truetype");
+    font-weight: normal;
+}
+@font-face {
+    font-family: "Poppins";
+    src: url("/fonts/Poppins-Bold.ttf") format("truetype");
+    font-weight: bold;
+}

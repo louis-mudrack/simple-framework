@@ -1,0 +1,70 @@
+// Project colors
+
+$primary: #ccc;
+$light: #fff;
+
+$baseGap: 18px;
+
+$rowMaxWidth: 1620px;
+
+$columnCount: 12;
+
+$bpContext: 16px;
+
+// Project gridMap
+
+$gridMap: (
+	default: (
+		width: em(0px, $bpContext), 
+		cols: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, auto),
+		prefix: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),
+		suffix: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),
+	),
+	tiny: (
+		width: em(480px, $bpContext), 
+		cols: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, auto),
+		prefix: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),
+		suffix: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),
+	),
+	small: (
+		width: em(640px, $bpContext), 
+		cols: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, auto),
+		prefix: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),
+		suffix: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),
+	),
+	medium: (
+		width: em(760px, $bpContext), 
+		cols: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, auto),
+		prefix: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),
+		suffix: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),
+	),
+	large: (
+		width: em(992px, $bpContext), 
+		cols: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, auto),
+		prefix: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),
+		suffix: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),
+	),
+	giant: (
+		width: em(1200px, $bpContext), 
+		cols: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, auto),
+		prefix: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),
+		suffix: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),
+	),
+	cut: (
+		width: em($rowMaxWidth, $bpContext), 
+		cols: (auto),
+	),
+	huge: (
+		width: em(1364px, $bpContext), 
+		cols: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, auto),
+		prefix: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),
+		suffix: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),
+	),
+	full: (
+		width: em(1520px, $bpContext), 
+		cols: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, auto),
+		prefix: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),
+		suffix: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),
+	),
+);
+
