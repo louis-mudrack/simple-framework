@@ -1,6 +1,7 @@
 <?php
+include("misc/site.contents.php");
 
-// Main variables
+// Variablen für die ganze Seite
 $text["client"]     = "";
 $text["title"]     = "";
 $text["desc"]     = "";
@@ -13,19 +14,23 @@ $text["fax"]      	= "";
 
 // set basic configurations
 
-$config["theme-color"] = "#ccc";
+$config['theme-color'] = "";
 
 // Get the site URL
 
-$config["url"] = "";
-$config["base-url"] = "";
+$config = array(
+    'url' => (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'],
+    'baseurl' => (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST']
+);
 
-if(isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] === "on") {
-    $ssl = "https";
-} else {
-    $ssl = "http";
+// Check if the current page is in our site.contents.php
+
+$current_page = null;
+foreach ($navigation as $page) {
+    if ($_SERVER["REQUEST_URI"] == $page["url"]) {
+        $current_page = $page;
+        break;
+    }
 }
-
-$config["url"] .= $ssl."://".$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"];
-$config["baseurl"] .= $ssl."://".$_SERVER["HTTP_HOST"];
+$config["current-page"] = $current_page;
 ?>
