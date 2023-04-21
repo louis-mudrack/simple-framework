@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title><?php echo $config['current-page']['title']; ?></title>
+        <title><?php echo $config["current-page"]["title"]; ?></title>
         <meta name="description" content="<?php echo $config["current-page"]["desc"]; ?>">
         <meta name="author" content="<?php echo $text["client"]; ?>">
         <meta property="og:title" content="<?php echo $config["current-page"]["title"]; ?>">
@@ -15,7 +15,7 @@
         <meta property="og:image" content="/images/social-branding.png">
         <meta property="og:site_name" content="<?php echo $config["current-page"]["title"]; ?>">
         <meta name="thumbnail" content="/images/social-branding.png">
-        <meta name="theme-color" content="<?php echo $config['theme-color']; ?>">
+        <meta name="theme-color" content="<?php echo $config["theme-color"]; ?>">
         <meta name="format-detection" content="telephone=no">
         <meta name="keywords" content="Portfolio, HTML, CSS, JavaScript, JS, Programmieren, Berlin, Louis, Mudrack, 2023">
         <base href="<?php echo $config["baseurl"]; ?>">
