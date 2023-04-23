@@ -1,5 +1,3 @@
-// Responsive
-
 @mixin breakpoint($point, $direction: min) {
   @if map-has-key($gridMap, $point) {
     @media ( #{$direction+'-width'}:

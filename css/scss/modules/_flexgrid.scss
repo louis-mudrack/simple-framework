@@ -1,4 +1,7 @@
-// Grid System
+/**
+ * Grid system
+ */
+
 .row {
   margin-left: auto;
   margin-right: auto;
@@ -34,16 +37,16 @@
     flex-basis: 100%;
   }
 
-  &.break-right, 
-  &.break-left {
+  &.breakRight, 
+  &.breakLeft {
     max-width: calc(50vw + #{$rowMaxWidth / 2 - 9});
   }
-  &.break-right {
+  &.breakRight {
     margin-left: auto;
     margin-right: 0;
     justify-content: flex-start;
   }
-  &.break-left {
+  &.breakLeft {
     margin-right: auto;
     margin-left: 0;
     justify-content: flex-end;
@@ -64,8 +67,8 @@
 }
 
 // remove padding left and right from cols
-.no-gutter,
-.no-gutter > .col {
+.noGutter,
+.noGutter > .col {
   padding-left: 0;
   padding-right: 0;
 }
@@ -81,12 +84,12 @@
                 max-width: grid-size($elm, $columnCount);
                 flex-basis: grid-size($elm, $columnCount);
                 @include breakpoint(cut) {
-                  .row.break-left > &, .row.break-right > & {max-width: $rowMaxWidth / 12 * $elm;}
+                  .row.breakLeft > &, .row.breakRight > & {max-width: $rowMaxWidth / 12 * $elm;}
                 }
               } @else {
                 max-width: 100%;
                 flex-basis: 0;
-                .row.break-left > &, .row.break-right > & {max-width: 100%;}
+                .row.breakLeft > &, .row.breakRight > & {max-width: 100%;}
               }
             }
           } @else if $key == suffix {

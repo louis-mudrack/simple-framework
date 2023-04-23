@@ -1,0 +1,10 @@
+.btn {
+    padding: .5rem;
+    border: 2px solid $primary;
+    background-color: transparent;
+    font-family: "Supreme";
+    font-weight: bold;
+    &:hover {
+        cursor: pointer;
+    }
+}

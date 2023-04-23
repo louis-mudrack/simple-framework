@@ -9,12 +9,22 @@ $navigation = array(
         "desc" => ""
     ),
     array(
-        "url" => "/impressum",
+        "url" => "/contact/",
         "title" => "",
         "desc" => ""
     ),
     array(
-        "url" => "/datenschutzerklaerung",
+        "url" => "/contact/form-success",
+        "title" => "",
+        "desc" => ""
+    ),
+    array(
+        "url" => "/legal-data",
+        "title" => "",
+        "desc" => ""
+    ),
+    array(
+        "url" => "/privacy-policy",
         "title" => "",
         "desc" => ""
     )

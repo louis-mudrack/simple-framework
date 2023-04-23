@@ -1,5 +1,12 @@
-// Converts a pixel value to em, relative to the body font size (or any other value).
-
+// * Converts a pixel value to em, relative to the body font size (or any other value).
+// *
+// * Usage:
+// * font-size:em(12px) (if based on body font size)
+// * font-size:em(12px, 18px) (if based on a parent with a relativ font size of 18px)
+// *
+// * @param	{string} $to-size	 Target pixel value
+// * @param	{string} $from-size: $base-font-size (optional) Font size of the parent
+// * @return {string}			 Calculated em value
 @function em($to-size, $from-size: $base-font-size) {
 	@if $to-size == 0px {
 		@return 0;
@@ -7,8 +14,15 @@
 	@return $to-size / $from-size * 1em;
 }
 
-// Converts a pixel value to rem, relative to the body font size (or any other value).
-
+// * Converts a pixel value to rem, relative to the body font size (or any other value).
+// *
+// * Usage:
+// * font-size:rem(12px) (if based on body font size)
+// * font-size:rem(12px, 18px) (if based on a parent with a relativ font size of 18px)
+// *
+// * @param	{string} $to-size	 Target pixel value
+// * @param	{string} $from-size: $base-font-size (optional) Font size of the parent
+// * @return {string}			 Calculated rem value
 @function rem($to-size, $from-size: $base-font-size) {
 	@if $to-size == 0px {
 		@return 0;

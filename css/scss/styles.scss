@@ -1,17 +1,19 @@
-// Modules
+/** Bootstrapping modules **/
 @import "modules/utilities";
 @import "modules/typography";
 @import "modules/fonts";
+@import "modules/icomoon";
 @import "modules/responsive";
 
-// Base configurations
+/** Base configuration **/
 @import "config";
 
-// Grid Sytem
+/** Grid systems **/
 @import "modules/flexgrid";
 
-// Page Styles
+/** Page styles **/
 @import "modules/functions";
 @import "layout/helpers";
 @import "layout/navigation";
+@import "layout/forms";
 @import "layout/page";

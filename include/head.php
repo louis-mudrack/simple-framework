@@ -1,4 +1,3 @@
-<?php include("misc/site.config.php") ?>
 <!DOCTYPE html>
 <html lang="de">
     <head>
@@ -17,7 +16,7 @@
         <meta name="thumbnail" content="/images/social-branding.png">
         <meta name="theme-color" content="<?php echo $config["theme-color"]; ?>">
         <meta name="format-detection" content="telephone=no">
-        <meta name="keywords" content="Portfolio, HTML, CSS, JavaScript, JS, Programmieren, Berlin, Louis, Mudrack, 2023">
+        <meta name="keywords" content="<?php echo $text["keywords"]; ?>">
         <base href="<?php echo $config["baseurl"]; ?>">
         <link rel="canonical" href="<?php echo $config["url"]; ?>">
         <!-- FAVICON -->
