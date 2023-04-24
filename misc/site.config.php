@@ -12,10 +12,7 @@ $text["phone"]          = "";
 $text["mail"]           = "";
 $text["fax"]      	    = "";
 $text["keywords"]       = "";
-// my personal favorite
-//===//
 $text["theme-color"]    = "";
-//===//
 
 // set basic configurations
 
