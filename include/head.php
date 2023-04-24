@@ -14,7 +14,7 @@
         <meta property="og:image" content="/images/social-branding.png">
         <meta property="og:site_name" content="<?php echo $config["current-page"]["title"]; ?>">
         <meta name="thumbnail" content="/images/social-branding.png">
-        <meta name="theme-color" content="<?php echo $config["theme-color"]; ?>">
+        <meta name="theme-color" content="<?php echo $text["theme-color"]; ?>">
         <meta name="format-detection" content="telephone=no">
         <meta name="keywords" content="<?php echo $text["keywords"]; ?>">
         <base href="<?php echo $config["baseurl"]; ?>">

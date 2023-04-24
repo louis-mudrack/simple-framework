@@ -2,20 +2,19 @@
 
 // Global variables
 
-$text["client"]     = "";
-$text["title"]      = "";
-$text["desc"]       = "";
-$text["address"]    = "";
-$text["postal"]    	= "";
-$text["city"]    	= "";
-$text["phone"]      = "";
-$text["mail"]       = "";
-$text["fax"]      	= "";
-$text["keywords"]   = "";
+$text["client"]         = "";
+$text["title"]          = "";
+$text["desc"]           = "";
+$text["address"]        = "";
+$text["postal"]    	    = "";
+$text["city"]    	    = "";
+$text["phone"]          = "";
+$text["mail"]           = "";
+$text["fax"]      	    = "";
+$text["keywords"]       = "";
+$text["theme-color"]    = "";
 
 // set basic configurations
-
-$config["theme-color"] = "";
 
 // Get the site URL
 
