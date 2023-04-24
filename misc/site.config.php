@@ -19,22 +19,12 @@ $text["theme-color"]    = "";
 
 // set basic configurations
 
-// not here 
-//===//
-// $config["theme-color"] = "";
-//===//
-
 // Get the site URL
 
 $config = array(
     "url" => (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] === "on" ? "https" : "http") . "://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"],
     "baseurl" => (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] === "on" ? "https" : "http") . "://" . $_SERVER["HTTP_HOST"]
 );
-
-// eitehr here
-//===//
-// $config["theme-color"] = "";
-//===//
 
 // Get the site root
 
