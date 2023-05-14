@@ -6,8 +6,12 @@ if (documentName.trim() === '/') {
   let documentName = 'index';
   document.body.classList.add(documentName)
 } else {
-  let documentName = document.location.pathname.split('/').pop().replace('.php', '');
-  document.body.classList.add(documentName)
+  let documentName = document.location.pathname.split("/");
+  documentName.forEach((element) => {
+    if (element !== "") {
+      document.body.classList.add(element.replace(".php", ""));
+    }
+  });
 };
 
 // Back to top btn
