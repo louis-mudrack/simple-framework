@@ -1,18 +1,9 @@
 // Give body classes from document name
+const documentName = document.location.pathname.trim() === '/' ? 'index' : document.location.pathname.split('/').filter(Boolean);
 
-let documentName = document.location.pathname;
-
-if (documentName.trim() === '/') {
-  let documentName = 'index';
-  document.body.classList.add(documentName)
-} else {
-  let documentName = document.location.pathname.split("/");
-  documentName.forEach((element) => {
-    if (element !== "") {
-      document.body.classList.add(element.replace(".php", ""));
-    }
-  });
-};
+documentName.forEach((element) => {
+  document.body.classList.add(element.replace('.php', ''));
+});
 
 // Back to top btn
 let backToTop = document.createElement("span");
