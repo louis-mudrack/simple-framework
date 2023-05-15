@@ -1,7 +1,4 @@
 // Give body classes from document name
-
-let documentName = document.location.pathname;
-
 const documentName = document.location.pathname.trim() === '/' ? 'index' : document.location.pathname.split('/').filter(Boolean);
 
 documentName.forEach((element) => {
