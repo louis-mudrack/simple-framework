@@ -2,17 +2,11 @@
 
 let documentName = document.location.pathname;
 
-if (documentName.trim() === '/') {
-  let documentName = 'index';
-  document.body.classList.add(documentName)
-} else {
-  let documentName = document.location.pathname.split("/");
-  documentName.forEach((element) => {
-    if (element !== "") {
-      document.body.classList.add(element.replace(".php", ""));
-    }
-  });
-};
+const documentName = document.location.pathname.trim() === '/' ? 'index' : document.location.pathname.split('/').filter(Boolean);
+
+documentName.forEach((element) => {
+  document.body.classList.add(element.replace('.php', ''));
+});
 
 // Back to top btn
 let backToTop = document.createElement("span");
