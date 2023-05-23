@@ -2,6 +2,7 @@
 
 const nav = document.querySelector("ul.navi");
 const mobileNav = document.querySelector(".mobile-nav ul");
+const footerNav = document.querySelector("footer ul");
 
 // Get Content of the site.contents.json
 fetch("misc/navi.json")
@@ -15,11 +16,12 @@ fetch("misc/navi.json")
                 a.href = item.url;
                 a.title = item.title;
                 a.alt = item.title;
-                a.textContent = item.name;
+                a.textContent = `${item.name}`;
                 if (item.external) {
                     a.setAttribute("target", "_blank");
                 }
                 li.appendChild(a);
+                li.classList.add(item.name.replace(/\s+/g, "-"));
                 nav.appendChild(li);
                 const mobileLi = li.cloneNode(true);
                 mobileNav.appendChild(mobileLi);
@@ -36,6 +38,19 @@ fetch("misc/navi.json")
                     });
                     a.classList.add("active");
                 });
+            } else if (item.footerNav) {
+                const li = document.createElement("li");
+                const a = document.createElement("a");
+                a.href = item.url;
+                a.title = item.title;
+                a.alt = item.title;
+                a.textContent = `${item.name}`;
+                if (item.external) {
+                  a.setAttribute("target", "_blank");
+                }
+                li.appendChild(a);
+                li.classList.add(item.name.replace(/\s+/g, "-"));
+                footerNav.appendChild(li);
             }
             if (
                 window.location.pathname === item.url &&
