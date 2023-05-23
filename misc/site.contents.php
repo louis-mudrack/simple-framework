@@ -9,7 +9,7 @@ $navigation = array(
         "desc" => ""
     ),
     array(
-        "url" => "/contact/",
+        "url" => "/contact/index",
         "title" => "",
         "desc" => ""
     ),
@@ -29,5 +29,9 @@ $navigation = array(
         "desc" => ""
     )
 );
+
+// Encode Navigation to JSON
+$json = json_encode($navigation);
+file_put_contents("misc/navi.json", $json)
 
 ?>
