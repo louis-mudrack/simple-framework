@@ -18,7 +18,8 @@ fetch("misc/navi.json")
                 a.textContent = item.name;
                 li.appendChild(a);
                 nav.appendChild(li);
-                mobileNav.appendChild(li);
+                const mobileLi = li.cloneNode(true);
+                mobileNav.appendChild(mobileLi);
 
                 // Check if current page pathname is same as item url, then add active class
                 if (window.location.pathname === item.url) {
@@ -32,6 +33,15 @@ fetch("misc/navi.json")
                     });
                     a.classList.add("active");
                 });
+            }
+            if (
+                window.location.pathname === item.url &&
+                item.noIndex === true
+            ) {
+                const meta = document.createElement("meta");
+                meta.setAttribute("name", "robots");
+                meta.setAttribute("content", "noindex");
+                document.head.appendChild(meta);
             }
         });
     })
