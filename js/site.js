@@ -16,6 +16,9 @@ fetch("misc/navi.json")
                 a.title = item.title;
                 a.alt = item.title;
                 a.textContent = item.name;
+                if (item.external) {
+                    a.setAttribute("target", "_blank");
+                }
                 li.appendChild(a);
                 nav.appendChild(li);
                 const mobileLi = li.cloneNode(true);
