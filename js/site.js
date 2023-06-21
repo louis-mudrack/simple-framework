@@ -20,6 +20,12 @@ fetch("misc/navi.json")
                 if (item.external) {
                     a.setAttribute("target", "_blank");
                 }
+                if (item.class) {
+                    const classes = item.class.split(" ");
+                    classes.forEach((className) => {
+                        a.classList.add(className);
+                    });
+                }
                 li.appendChild(a);
                 li.classList.add(item.name.replace(/\s+/g, "-"));
                 nav.appendChild(li);
