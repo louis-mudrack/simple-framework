@@ -1,6 +1,7 @@
 <?php require_once($_SERVER["DOCUMENT_ROOT"]."/misc/site.config.php") ?>
 <?php require_once(SITE_ROOT."include/head.php"); ?>
     <?php require_once(SITE_ROOT."include/header-secondary.php"); ?>
+    <?php require_once(SITE_ROOT."misc/mailing.php");?>
         <main>
             <div class="row">
                 <div class="large-8 large-prefix-2 large-suffix-2">
