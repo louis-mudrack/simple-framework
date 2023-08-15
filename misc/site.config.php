@@ -9,7 +9,7 @@ $text["address"]        = "";
 $text["postal"]    	    = "";
 $text["city"]    	    = "";
 $text["phone"]          = "";
-$text["mail"]           = "business@louismudrack.de";
+$text["mail"]           = "";
 $text["fax"]      	    = "";
 $text["keywords"]       = "";
 $text["theme-color"]    = "";
@@ -52,4 +52,6 @@ $csrf_token = session_id();
 // Store the CSRF token in the session
 $_SESSION["csrf_token"] = $csrf_token;
 
+// Start loading content into template
+ob_start();
 ?>
