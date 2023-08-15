@@ -19,6 +19,11 @@ $navigation = array(
         "desc" => ""
     ),
     array(
+        "url" => "/contact/form-error",
+        "title" => "",
+        "desc" => ""
+    ),
+    array(
         "url" => "/legal-data",
         "title" => "",
         "desc" => ""

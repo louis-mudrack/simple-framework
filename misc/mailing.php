@@ -2,47 +2,56 @@
 // Check if the form has been submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
+    // Initialize an array to store error messages
+    $errors = [];
+
     // Validate the email address
-    if (!filter_var($_POST["mail"], FILTER_VALIDATE_EMAIL)) {
+    if (isset($_POST["mail"]) &&!empty($_POST["mail"]) &&!filter_var($_POST["mail"], FILTER_VALIDATE_EMAIL)) {
         // Invalid email address
-        $error_mail = "Please enter a valid email address.";
+        $errors['mail'] = "Please enter a valid email address.";
     }
 
     // Validate the name
-    if (strlen($_POST["name"]) > 100) {
+    if (isset($_POST["name"]) &&!empty($_POST["name"]) && strlen($_POST["name"]) > 100) {
         // Name too long
-        $error_name = "Your name is too long. Please limit to 100 characters.";
+        $errors['name'] = "Your name is too long. Please limit to 100 characters.";
     }
 
     // Validate the business
-    if (strlen($_POST["business"]) > 100) {
+    if (isset($_POST["business"]) &&!empty($_POST["business"]) && strlen($_POST["business"]) > 100) {
         // Business too long
-        $error_business = "Your business is too long. Please limit to 100 characters.";
+        $errors['business'] = "Your business is too long. Please limit to 100 characters.";
     }
 
     // Validate the phone number
-    if (!preg_match('/^[0-9]$/', $_POST["phone"])) {
+    if (isset($_POST["phone"]) &&!empty($_POST["phone"]) &&!preg_match('/^[0-9]+$/', $_POST["phone"])) {
         // Invalid phone number
-        $error_phone = "Please enter a valid phone number.";
+        $errors['phone'] = "Please enter a valid phone number using numbers.";
     }
 
     // Validate the message
-    if (strlen($_POST["message"]) > 1000) {
+    if (isset($_POST["message"]) &&!empty($_POST["message"]) && strlen($_POST["message"]) > 1000) {
         // Message too long
-        $error_message = "Your message is too long. Please limit to 1000 characters.";
+        $errors['message'] = "Your message is too long. Please limit to 1000 characters.";
     }
 
     // Validate the callback
-    if (!empty($_POST["callback"]) &&!filter_var($_POST["callback"], FILTER_VALIDATE_BOOLEAN)) {
+    if (isset($_POST["callback"]) &&!empty($_POST["callback"]) &&!filter_var($_POST["callback"], FILTER_VALIDATE_BOOLEAN)) {
         // Invalid callback value
-        $error_callback = "Please enter a valid callback value (true or false).";
+        $errors['callback'] = "Please enter a valid callback value (true or false).";
     }
 
     // Check if there are any errors
-    if (isset($error_mail) || isset($error_name) || isset($error_business) || isset($error_phone) || isset($error_message) || isset($error_callback)) {
-        // Display the form again with errors
-        //...
+    if (!empty($errors)) {
+        // Store the errors in the session
+        session_start();
+        $_SESSION['errors'] = $errors;
+
+        // Redirect to the form-error.php page
+        header("Location: ../contact/form-error.php");
+        exit;
     } else {
+        // Send the email and redirect to form-success.php
         require_once($_SERVER["DOCUMENT_ROOT"]."/misc/site.config.php");
         $to = $text["mail"];
         $mail = $_POST["mail"];
