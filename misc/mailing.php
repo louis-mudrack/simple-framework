@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['errors'] = $errors;
 
         // Redirect to the form-error.php page
-        header("Location: form-error.php");
+        header("Location: ../contact/form-error.php");
         exit;
     } else {
         // Send the email and redirect to form-success.php

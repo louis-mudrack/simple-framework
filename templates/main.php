@@ -57,7 +57,7 @@
         </header>
         <main>
             <?php echo isset($templateContent) ? $templateContent : ''; ?>
-            <?php if ($config["current-page"]["url"] == "/contact"):?>
+            <?php if ($config["current-page"]["url"] == "/contact/index"):?>
                 <p>This specific content is displayed when page is contact</p>
             <?php endif;?>
         </main>

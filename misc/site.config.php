@@ -42,16 +42,6 @@ foreach ($navigation as $page) {
 }
 $config["current-page"] = $current_page;
 
-// Generate CSRF Token for forms
-session_start();
-
-// Generate a new CSRF token
-session_regenerate_id(true);
-$csrf_token = session_id();
-
-// Store the CSRF token in the session
-$_SESSION["csrf_token"] = $csrf_token;
-
 // Start loading content into template
 ob_start();
 ?>
