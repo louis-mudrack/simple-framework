@@ -4,7 +4,7 @@ const nav = document.querySelector("ul.navi");
 const mobileNav = document.querySelector(".mobile-nav ul");
 const footerNav = document.querySelector("footer ul");
 
-// Get Content of the site.contents.json
+// Get Content of the navi.json
 fetch("misc/navi.json")
     .then((response) => response.json())
     .then((data) => {

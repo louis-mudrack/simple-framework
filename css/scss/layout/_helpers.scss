@@ -4,7 +4,13 @@
     background-color: transparent;
     font-family: "Supreme";
     font-weight: bold;
+    display: inline-block;
     &:hover {
         cursor: pointer;
     }
+}
+
+.flex-end {
+    display: flex;
+    justify-content: end;
 }
