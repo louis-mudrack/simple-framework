@@ -4,7 +4,7 @@ session_start();
 
 if (isset($_SESSION['errors'])) {
     foreach ($_SESSION['errors'] as $field => $error) {
-        echo "<p>Error in field '$field': $error</p>";
+        echo "<p>$error</p>";
     }
 
     // Clear the errors from the session
