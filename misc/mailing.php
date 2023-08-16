@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['errors'] = $errors;
 
         // Redirect to the form-error.php page
-        header("Location: ../contact/form-error.php");
+        header("Location: ../contact/form-error");
         exit;
     } else {
         // Send the email and redirect to form-success.php
@@ -97,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </html>
         ";
         mail($to, $subject, $text, $header);
-        header("Location: ../contact/form-success.php");
+        header("Location: ../contact/form-success");
     }
 }
 ?>
