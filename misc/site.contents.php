@@ -14,7 +14,7 @@ $navigation = array(
         "name" => "Contact",
         "url" => "/contact/index",
         "title" => "",
-        "desc" => "Have a question or comment? We'd love to hear from you! Fill out the form below and we'll get back to you as soon as possible."
+        "desc" => "Have a question or comment? We'd love to hear from you! Fill out the form below and we'll get back to you as soon as possible.",
         "sub" => array(
             array(
                 "name" => "Form Success",
