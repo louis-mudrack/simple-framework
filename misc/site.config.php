@@ -30,6 +30,7 @@ define("SITE_ROOT", $_SERVER["DOCUMENT_ROOT"]."/");
 // include the navigation
 
 require_once(SITE_ROOT."misc/site.contents.php");
+require_once(SITE_ROOT."misc/site.navigation.php");
 
 // Check if the current page is in our site.contents.php
 
@@ -43,5 +44,6 @@ foreach ($navigation as $page) {
 $config["current-page"] = $current_page;
 
 // Start loading content into template
+
 ob_start();
 ?>

@@ -60,41 +60,63 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $phone = $_POST["phone"];
         $message = $_POST["message"];
         $callback = $_POST["callback"];
-        $subject = "Form submission";
+        $subject = "Form submission for ".$text["client"];
         $header  = "MIME-Version: 1.0\r\n";
-        $header .= "Content-type: text/html; charset=utf-8\r\n";
-        $header .= "X-Mailer: PHP ". phpversion();
+        $header.= "Content-type: text/html; charset=utf-8\r\n";
+        $header.= "X-Mailer: PHP ". phpversion();
         $text = "
         <html>
+            <head>
+                <style>
+                    table {
+                        border-collapse: collapse;
+                        width: 100%;
+                        max-width: 600px;
+                        margin: 0 auto;
+                        font-family: Arial, sans-serif;
+                        font-size: 16px;
+                        line-height: 1.5;
+                        color: #333;
+                    }
+                    th, td {
+                        padding: 10px;
+                        text-align: left;
+                        border-bottom: 1px solid #ddd;
+                    }
+                    th {
+                        background-color: #f2f2f2;
+                    }
+                </style>
+            </head>
             <body>
                 <table>
                     <tr>
-                        <td>Name:</td>
+                        <th>Name:</th>
                         <td>$name</td>
                     </tr>
                     <tr>
-                        <td>E-Mail:</td>
+                        <th>E-Mail:</th>
                         <td>$mail</td>
                     </tr>
                     <tr>
-                        <td>Business:</td>
+                        <th>Business:</th>
                         <td>$business</td>
                     </tr>
                     <tr>
-                        <td>Phone:</td>
+                        <th>Phone:</th>
                         <td>$phone</td>
                     </tr>
                     <tr>
-                        <td>Call back:</td>
+                        <th>Call back:</th>
                         <td>$callback</td>
                     </tr>
                     <tr>
-                        <td>Message:</td>
+                        <th>Message:</th>
                         <td>$message</td>
                     </tr>
                 </table>
             </body>
-        </html>
+        </html
         ";
         mail($to, $subject, $text, $header);
         header("Location: ../contact/form-success");
