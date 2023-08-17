@@ -35,8 +35,4 @@ $navigation = array(
     )
 );
 
-// Encode Navigation to JSON
-$json = json_encode($navigation);
-file_put_contents("misc/navi.json", $json)
-
 ?>
