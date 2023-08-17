@@ -40,6 +40,14 @@ foreach ($navigation as $page) {
         $current_page = $page;
         break;
     }
+    if (isset($page["sub"])) {
+        foreach ($page["sub"] as $subPage) {
+            if ($_SERVER["REQUEST_URI"] == $subPage["url"]) {
+                $current_page = $subPage;
+                break 2;
+            }
+        }
+    }
 }
 $config["current-page"] = $current_page;
 

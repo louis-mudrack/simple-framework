@@ -3,21 +3,40 @@
 // Loop through the content and create the list items
 
 function createNavItem($item, $isFooter = false) {
-    if (isset($item['navExclude']) && $item['navExclude'] == true && !$isFooter) {
+    if (isset($item['navExclude']) && $item['navExclude'] == true &&!$isFooter) {
         return;
     }
 
-    $isActive = ($_SERVER['REQUEST_URI'] == $item['url']) ? 'active' : '';
+    $isActive = ($_SERVER['REQUEST_URI'] == $item['url'] || strpos($_SERVER['REQUEST_URI'], $item['url'])!== false)? 'active' : '';
     $className = str_replace('/', '-', trim($item['url'], '/'));
+    if ($item['url'] == '/') {
+        $className = str_replace(' ', '-', strtolower($item['name']));
+    }
     $li = "<li class='{$className}'>";
 
     if (isset($item['sub'])) {
-        $li .= "<span>{$item['name']}</span>";
-        $li .= "<ul>";
+        $numExcludeSub = 0;
         foreach ($item['sub'] as $subItem) {
-            $li .= createNavItem($subItem);
+            if (isset($subItem['navExclude']) && $subItem['navExclude'] == true) {
+                $numExcludeSub++;
+            }
         }
-        $li .= "</ul>";
+        if ($numExcludeSub == count($item['sub'])) {
+            $a = "<a href='{$item['url']}' title='{$item['title']}' alt='{$item['title']}' class='{$isActive}'>{$item['name']}</a>";
+            $li.= $a;
+        } else {
+            $li = str_replace("class='{$className}'", "class='{$className} has-sub' ", $li);
+            $li.= "<span>{$item['name']}</span>";
+            $li.= "<ul class='sub'><li><a href='{$item['url']}' title='{$item['title']}' alt='{$item['title']}' class='{$isActive}'>{$item['name']}</a></li>";
+            foreach ($item['sub'] as $subItem) {
+                $isActive = ($_SERVER['REQUEST_URI'] == $subItem['url'] || strpos($_SERVER['REQUEST_URI'], $subItem['url'])!== false)? 'active' : '';
+                if (isset($subItem['navExclude']) && $subItem['navExclude'] == true) {
+                    break;
+                }
+                $li.= "<li><a href='{$subItem['url']}' title='{$subItem['title']}' alt='{$subItem['title']}' class='{$isActive}'>{$subItem['name']}</a></li>";
+            }
+            $li.= "</ul>";
+        }
     } else {
         $a = "<a href='{$item['url']}' title='{$item['title']}' alt='{$item['title']}' class='{$isActive}'>{$item['name']}</a>";
         if (isset($item['external']) && $item['external']) {
@@ -29,9 +48,9 @@ function createNavItem($item, $isFooter = false) {
                 $a = str_replace("<a ", "<a class='{$className} ", $a);
             }
         }
-        $li .= $a;
+        $li.= $a;
     }
-    $li .= "</li>";
+    $li.= "</li>";
 
     return $li;
 }
