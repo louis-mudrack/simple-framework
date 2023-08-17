@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $phone = $_POST["phone"];
         $message = $_POST["message"];
         $callback = $_POST["callback"];
-        $subject = "Form submission";
+        $subject = "Form submission for ".$text["client"];
         $header  = "MIME-Version: 1.0\r\n";
         $header.= "Content-type: text/html; charset=utf-8\r\n";
         $header.= "X-Mailer: PHP ". phpversion();
