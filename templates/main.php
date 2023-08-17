@@ -32,6 +32,7 @@
                 </div>
                 <div class="col large-9">
                     <ul class="navi">
+                        <?php echo $mainNav; ?>
                     </ul>
                 </div>
             </div>
@@ -48,6 +49,7 @@
                         <span></span>
                     </label>
                     <ul>
+                        <?php echo $mainNav; ?>
                     </ul>
                 </div>
             </div>
