@@ -32,6 +32,7 @@
                 </div>
                 <div class="col large-9">
                     <ul class="navi">
+                        <?php echo $mainNav; ?>
                     </ul>
                 </div>
             </div>
@@ -49,6 +50,7 @@
                         <span></span>
                     </label>
                     <ul>
+                        <?php echo $mainNav; ?>
                     </ul>
                 </div>
             </div>
@@ -69,6 +71,7 @@
                 </div>
                 <div class="col small-7 large-5 small-suffix-1 large-suffix-1">
                     <ul>
+                        <?php echo $footerNav; ?>
                     </ul>
                 </div>
             </div>
