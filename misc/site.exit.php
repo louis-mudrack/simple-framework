@@ -1,5 +1,6 @@
 <?php 
 
+// Get the template content and end buffer
 $templateContent = ob_get_contents();
 ob_end_clean();
 

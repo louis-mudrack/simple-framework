@@ -44,5 +44,6 @@ foreach ($navigation as $page) {
 $config["current-page"] = $current_page;
 
 // Start loading content into template
+
 ob_start();
 ?>
