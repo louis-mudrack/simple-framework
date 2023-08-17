@@ -13,7 +13,7 @@ $navigation = array(
     array(
         "name" => "Contact",
         "url" => "/contact/index",
-        "title" => "",
+        "title" => "Contact | Your Business",
         "desc" => "Have a question or comment? We'd love to hear from you! Fill out the form below and we'll get back to you as soon as possible.",
         "sub" => array(
             array(

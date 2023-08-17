@@ -1,6 +1,7 @@
 <?php $template = 'main'; require_once($_SERVER["DOCUMENT_ROOT"]."/misc/site.config.php") ?>
 <div class="row">
         <div class="large-8 large-prefix-2 large-suffix-2">
+            
             <h2>An error occured!</h2>
             <?php
             session_start();
