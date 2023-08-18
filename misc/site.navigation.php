@@ -18,7 +18,7 @@ function generateNavItem($item, $isFooter = false) {
             }
             
             $subIsActive = isNavItemActive($subItem) ? 'active' : '';
-            $subItemsHTML .= generateLink($subItem, $subIsActive);
+            $subItemsHTML .= generateLink($subItem, $subIsActive, true);
         }
         
         if (!empty($subItemsHTML)) {
@@ -43,7 +43,7 @@ function generateClassName($item) {
     return str_replace('/', '-', $urlPath);
 }
 
-function generateLink($item, $isActiveClass) {
+function generateLink($item, $isActiveClass, $sub = false) {
     $aHref = $item['url'];
     if (isset($item['external']) && $item['external']) {
         $aHref .= "' target='_blank";
@@ -54,7 +54,12 @@ function generateLink($item, $isActiveClass) {
         $aClasses = array_merge($aClasses, explode(" ", $item['class']));
     }
 
-    return "<a href='{$aHref}' title='{$item['title']}' alt='{$item['title']}' class='" . implode(' ', $aClasses) . "'>{$item['name']}</a>";
+    if ($sub) {
+        return "<li><a href='{$aHref}' title='{$item['title']}' alt='{$item['title']}' class='" . implode(' ', $aClasses) . "'>{$item['name']}</a></li>";
+    } else {
+        return "<a href='{$aHref}' title='{$item['title']}' alt='{$item['title']}' class='" . implode(' ', $aClasses) . "'>{$item['name']}</a>";
+    }
+
 }
 
 // Start output buffering
