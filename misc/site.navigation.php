@@ -22,7 +22,7 @@ function generateNavItem($item, $isFooter = false) {
         }
         
         if (!empty($subItemsHTML)) {
-            $liContent = "<span>{$item['name']}</span><ul class='sub'>{$subItemsHTML}</ul>";
+            $liContent = "<span>{$item['name']}</span><ul class='sub'><li class="$className">$liContent</li>{$subItemsHTML}</ul>";
             $className .= ' has-sub';
         }
     }
