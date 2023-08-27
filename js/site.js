@@ -1,14 +1,3 @@
-// set body classes from document name
-const documentName = document.location.pathname.trim() === "/" ? "index" : document.location.pathname.split("/").filter(Boolean);
-
-if (Array.isArray(documentName)) {
-  documentName.forEach((element) => {
-    document.body.classList.add(element);
-  });
-} else {
-    document.body.classList.add(documentName);
-}
-
 // Back to top btn
 let backToTop = document.createElement("span");
 backToTop.id = "back-to-top";

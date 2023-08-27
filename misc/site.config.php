@@ -51,6 +51,13 @@ foreach ($navigation as $page) {
 }
 $config["current-page"] = $current_page;
 
+// functions for the body classes
+
+require_once(SITE_ROOT."misc/bodyClasses.php");
+$templateName = $template;
+$currentSite = $config["current-page"]["name"];
+$currentUrl = $config["current-page"]["url"];
+
 // Start loading content into template
 
 ob_start();

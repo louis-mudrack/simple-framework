@@ -24,7 +24,7 @@
         <!-- STYLES -->
         <link rel="stylesheet" href="/css/styles.min.css" media="screen">
     </head>
-    <body>
+    <body class="<?php echo bodyClasses($templateName, $currentSite, $currentUrl); ?>">
         <nav class="nav">
             <div class="row">
                 <div class="col large-3 logo">
