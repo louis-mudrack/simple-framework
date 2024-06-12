@@ -2,17 +2,15 @@
 
 // Global variables
 
-$config["client"]         = "";
-$config["title"]          = "";
-$config["desc"]           = "";
-$config["address"]        = "";
-$config["postal"]    	    = "";
-$config["city"]    	    = "";
-$config["phone"]          = "";
-$config["mail"]           = "";
-$config["fax"]      	    = "";
-$config["keywords"]       = "";
-$config["theme-color"]    = "";
+$text["client"]         = "";
+$text["address"]        = "";
+$text["postal"]    	    = "";
+$text["city"]    	    = "";
+$text["phone"]          = "";
+$text["mail"]           = "";
+$text["fax"]      	    = "";
+$text["keywords"]       = "";
+$text["theme-color"]    = "";
 
 // set basic configurations
 

@@ -53,14 +53,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         // Send the email and redirect to form-success.php
         require_once($_SERVER["DOCUMENT_ROOT"]."/_settings/site.config.php");
-        $to = $config["mail"];
+        $to = $text["mail"];
         $mail = $_POST["mail"];
         $name = $_POST["name"];
         $business = $_POST["business"];
         $phone = $_POST["phone"];
         $message = $_POST["message"];
         $callback = $_POST["callback"];
-        $subject = "Form submission for ".$config["client"];
+        $subject = "Form submission for ".$text["client"];
         $header  = "MIME-Version: 1.0\r\n";
         $header.= "Content-type: text/html; charset=utf-8\r\n";
         $header.= "X-Mailer: PHP ". phpversion();

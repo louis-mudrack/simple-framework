@@ -11,4 +11,42 @@ function bodyClasses($templateName, $currentSite, $currentUrl) {
     return implode(' ', $uniqueClasses);
 }
 
+function getUserPlatformAndBrowser() {
+    $user_agent = $_SERVER['HTTP_USER_AGENT'];
+    $platforms = array(
+        'Windows' => 'windows', 
+        'Macintosh' => 'mac', 
+        'iPhone' => 'iphone', 
+        'Android' => 'android',
+        'Linux' => 'linux'
+    );
+    $browsers = array(
+        'Chrome' => 'chrome', 
+        'Firefox' => 'firefox', 
+        'Safari' => 'safari', 
+        'Opera' => 'opera', 
+        'MSIE' => 'ie', 
+        'Edge' => 'edge'
+    );
+
+    $platform_class = 'unknown-platform';
+    $browser_class = 'unknown-browser';
+
+    foreach ($platforms as $key => $value) {
+        if (strpos($user_agent, $key) !== false) {
+            $platform_class = $value;
+            break;
+        }
+    }
+
+    foreach ($browsers as $key => $value) {
+        if (strpos($user_agent, $key) !== false) {
+            $browser_class = $value;
+            break;
+        }
+    }
+
+    return $platform_class . ' ' . $browser_class;
+}
+
 ?>

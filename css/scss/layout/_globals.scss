@@ -95,8 +95,8 @@ h6,
   -webkit-hyphens: auto;
 
   /* Use this to let headlines break in Chrome Desktop
-  body.platformWindows.chrome &,
-  body.platformLinux.chrome & {
+  body.windows.chrome &,
+  body.linux.chrome & {
       word-break: break-all;
   }
   */
