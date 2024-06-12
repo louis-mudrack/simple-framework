@@ -1,7 +1,7 @@
-<?php $template = 'main'; require_once($_SERVER["DOCUMENT_ROOT"]."/misc/site.config.php") ?>
+<?php $template = 'main'; require_once($_SERVER["DOCUMENT_ROOT"]."/_settings/site.config.php") ?>
     <div class="row">
         <div class="col large-8 large-prefix-2 large-suffix-2">
-            <form method="post" action="../misc/mailing.php">
+            <form method="post" action="../_essentials/mailing.php">
                 <div class="row">
                     <div class="col medium-6">
                         <label for="mail">Email:</label>
@@ -26,4 +26,4 @@
             </form>
         </div>
     </div>
-<?php require(SITE_ROOT."misc/site.exit.php"); ?>
+<?php require(SITE_ROOT."_essentials/site.exit.php"); ?>
