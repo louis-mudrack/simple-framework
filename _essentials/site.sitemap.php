@@ -15,41 +15,30 @@ function scanDirectory($directory, &$urls, $baseUrl) {
     }
 }
 
-function generateSitemap() {
-  $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-  $domainName = $_SERVER['HTTP_HOST'];
-  $baseUrl = $protocol . $domainName;
+if (isset($_GET['generateSitemap'])) {
+    function generateSitemap() {
+        $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+        $domainName = $_SERVER['HTTP_HOST'];
+        $baseUrl = $protocol . $domainName;
 
-  $urls = [];
-  scanDirectory($_SERVER['DOCUMENT_ROOT'], $urls, $baseUrl);
+        $urls = [];
+        scanDirectory($_SERVER['DOCUMENT_ROOT'], $urls, $baseUrl);
 
-  $sitemap = new SimpleXMLElement('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"></urlset>');
+        $sitemap = new SimpleXMLElement('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"></urlset>');
 
-  foreach ($urls as $url) {
-      $urlElement = $sitemap->addChild('url');
-      $urlElement->addChild('loc', htmlspecialchars($url));
+        foreach ($urls as $url) {
+            $urlElement = $sitemap->addChild('url');
+            $urlElement->addChild('loc', htmlspecialchars($url));
+            $lastMod = date('c');
+            $urlElement->addChild('lastmod', $lastMod);
+            $urlElement->addChild('changefreq', 'monthly');
+            $urlElement->addChild('priority', '0.8');
+        }
 
-      // Fetch the content of the URL
-      $html = file_get_contents($url);
-      if ($html) {
-          $doc = new DOMDocument();
-          @$doc->loadHTML($html);
-          $xpath = new DOMXPath($doc);
-          $images = $xpath->query("//img");
+        // Save the sitemap to a file
+        $sitemap->asXML('sitemap.xml');
+        echo '<span class="framework-alert">Sitemap generated successfully.</span>';
+    }
 
-          foreach ($images as $img) {
-              $imgSrc = $img->getAttribute('src');
-              // Ensure the image source is absolute
-              $imgUrl = (strpos($imgSrc, 'http') === 0) ? $imgSrc : $baseUrl . '/' . ltrim($imgSrc, '/');
-              $imageElement = $urlElement->addChild('image:image', null, 'http://www.google.com/schemas/sitemap-image/1.1');
-              $imageElement->addChild('image:loc', $imgUrl, 'http://www.google.com/schemas/sitemap-image/1.1');
-          }
-      }
-  }
-
-  // Save the sitemap to the root directory
-  $sitemap->asXML($_SERVER["DOCUMENT_ROOT"] . '/sitemap.xml');
+    generateSitemap();
 }
-
-generateSitemap();
-echo "Sitemap generated successfully.";
