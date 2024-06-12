@@ -27,14 +27,14 @@ $config = array(
 
 define("SITE_ROOT", $_SERVER["DOCUMENT_ROOT"]."/");
 
-// Generate a Sitemap
-
-require_once(SITE_ROOT."_essentials/site.sitemap.php");
-
 // include the navigation
 
 require_once(SITE_ROOT."_settings/site.contents.php");
 require_once(SITE_ROOT."_essentials/site.navigation.php");
+
+// Generate a Sitemap
+
+require_once(SITE_ROOT."_essentials/site.sitemap.php");
 
 // Check if the current page is in our site.contents.php
 

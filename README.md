@@ -14,7 +14,7 @@ Welcome to Simple Framework, a lightweight yet powerful tool designed to streaml
 - **Mailing System**: Integrated mailing system for contact forms.
 - **Notifications**: Widely usable JS Notifications to display on your website.
 - **LazyLoad**: A custom LazyLoad for images and iframes.
-- **Animations**: AOS like animations based on the LazyLoad to make it lightweight.
+- **Animations**: AOS-like animations based on the LazyLoad to make it lightweight.
 - **Helper Classes**: Many more CSS based helper classes for faster workflow.
 
 ## Getting Started
@@ -42,7 +42,7 @@ Utilize the grid system to create a responsive layout.
 ```html
   <div class="row">
     <div class="col default-6 large-3">Column 1</div>
-    <div class="col medium-2 full-12">Column 2</div>
+    <div class="col default-6 medium-2 full-12">Column 2</div>
   </div>
 ```
 
@@ -84,18 +84,18 @@ LazyLoad your images and iframes for a better performance.
 
 ### LazyAnimations
 
-Use AOS like Animations utilizing the LazyLoad for a lightweight package.
+Use AOS-like Animations utilizing the LazyLoad for a lightweight package.
 
 ```html
-  <div class="lazy-animation-initialized lazy-animation-in-view" data-animation-type="fade-up">This element will fade up into view.</div>
+  <div class="lazy-animation" data-animation-type="fade-up">This element will fade up into view.</div>
 
-  <div class="lazy-animation-initialized lazy-animation-in-view" data-animation-type="fade-down">This element will fade down into view.</div>
+  <div class="lazy-animation" data-animation-type="fade-down">This element will fade down into view.</div>
 
-  <div class="lazy-animation-initialized lazy-animation-in-view" data-animation-type="slide-left">This element will slide in from the right.</div>
+  <div class="lazy-animation" data-animation-type="slide-left">This element will slide in from the right.</div>
 
-  <div class="lazy-animation-initialized lazy-animation-in-view" data-animation-type="slide-right">This element will slide in from the left.</div>
+  <div class="lazy-animation" data-animation-type="slide-right">This element will slide in from the left.</div>
 
-  <div class="lazy-animation-initialized lazy-animation-in-view">This element will only fade in.</div>
+  <div class="lazy-animation">This element will only fade in.</div>
 ```
 
 ### Helper Classes
