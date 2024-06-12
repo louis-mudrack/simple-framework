@@ -1,37 +1,77 @@
-# Simple Framework 🏗️🌐
+# Simple Framework
 
-Hello there, web developer! 👋
+Welcome to Simple Framework, a lightweight yet powerful tool designed to streamline the development of dynamic websites. This framework provides a robust starting point with features like a grid system, dynamic navigation, template files, body classes, a back-to-top button, JS form validation, and a mailing system.
 
-Welcome to the most straightforward yet powerful tool in your developer arsenal - the "Simple Framework"! 🎉
+## Features
 
-## What's the big idea? 🤔
+- **Grid System**: A flexible grid system to create responsive layouts.
+- **Dynamic Navigation**: Easily manage your site's navigation links.
+- **Template Files**: Reusable templates for header, footer, and more.
+- **Body Classes**: Dynamically generate body classes for styling.
+- **Back to Top Button**: A smooth back to top button.
+- **JS Form Validation**: Client-side form validation.
+- **Mailing System**: Integrated mailing system for contact forms.
 
-Building a dynamic website from scratch can be as tricky as solving a Rubik's cube blindfolded. But don't worry, we've got your back! 🧩👀
+## Getting Started
 
-Our tool is a starting point for creating dynamic websites. It features a Gridsystem, dynamic navigation, template files for header and footer, bodyclasses, a back to top button, JS form validation, and a mailing system. It's like a Swiss Army knife for web development! 🇨🇭🔪
+### Prerequisites
 
-## How does it work? 🛠️
+- Web server with PHP support (for backend features)
+- Basic knowledge of HTML, CSS, JavaScript and PHP.
 
-It's as easy as pie! You just integrate our tool into your project, and it will take care of the rest. It will provide you with a solid foundation to build your dynamic website. 🏗️🌐
+### Installation
 
-## Why should I use it? 🏆
+1. Clone the repository to your local machine or download the ZIP file and extract it in your project directory.
+   ```bash
+   git clone https://github.com/yourusername/simple-framework.git
+   ```
+2. Edit the files and your good to go. You can start in the template and after that use it like in the index.php.
+3. Make sure to fill in the Variables on top of the site.config.php and to edit the navigation in the [site.contents.php](/misc/site.contents.php).
 
-Because it's simple, it's efficient, and it will make your web development process smoother than a fresh jar of Skippy. Plus, who doesn't want to save time and effort? ⏳💪
+## Usage
 
-## Installation 📥
+### Grid System
 
-Installing "Simple Framework" is a walk in the park. Just copy and paste a few lines of code and you're all set! 🌳🚶‍♂️
+Utilize the grid system to create a responsive layout.
 
-## Usage 🖥️
+```html
+  <div class="row">
+    <div class="col default-6 large-3">Column 1</div>
+    <div class="col medium-2 full-12">Column 2</div>
+  </div>
+```
 
-Using "Simple Framework" is even easier than installing it. Just integrate it into your project and let it do its magic. 🧙‍♂️
+### Dynamic Navigation
 
-## Conclusion 🏁
+Implement dynamic navigation by editing [site.contents.php](/misc/site.contents.php). Use this syntax inside of the initial $navigation array.
 
-So what are you waiting for? Give "Simple Framework" a try and make your web development process a breeze. And remember, a good framework is the key to a great website! 🔑🌐
+```php
+  "Home" => array(
+      "url" => "/",
+      "title" => "Welcome | Your Site title",
+      "desc" => "Your site description.",
+  ),
+```
 
-Happy coding! 🎉👩‍💻👨‍💻
+## Contributing
 
-## Disclaimer 🚨
+We welcome contributions! If you'd like to contribute, please follow these steps:
 
-No actual magic was used in the creation of this tool. If you find any magic in your code, we are not responsible. 🎩🐇
+1. Fork the repository.
+2. Create a new branch (git checkout -b feature/AmazingFeature).
+3. Make your changes.
+4. Commit your changes (git commit -m 'Add some AmazingFeature').
+5. Push to the branch (git push origin feature/AmazingFeature).
+6. Open a pull request.
+
+Please ensure your code adheres to the project's coding standards and include appropriate tests and documentation.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](/LICENSE.md) file for details.
+
+## Acknowledgments
+
+Thank you for helping with this project:
+
+- [Limiting-Ongoing-Work](https://github.com/Limiting-Ongoing-Work)
