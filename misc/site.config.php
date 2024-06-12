@@ -35,15 +35,17 @@ require_once(SITE_ROOT."misc/site.navigation.php");
 // Check if the current page is in our site.contents.php
 
 $current_page = null;
-foreach ($navigation as $page) {
+foreach ($navigation as $name => $page) {
     if ($_SERVER["REQUEST_URI"] == $page["url"]) {
         $current_page = $page;
+        $current_page['name'] = $name;
         break;
     }
     if (isset($page["sub"])) {
-        foreach ($page["sub"] as $subPage) {
+        foreach ($page["sub"] as $subName => $subPage) {
             if ($_SERVER["REQUEST_URI"] == $subPage["url"]) {
                 $current_page = $subPage;
+                $current_page['name'] = $subName;
                 break 2;
             }
         }

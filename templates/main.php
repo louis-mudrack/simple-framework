@@ -28,7 +28,7 @@
         <nav class="nav">
             <div class="row">
                 <div class="col large-3 logo">
-                    <a href="/" alt="<?php echo $navigation[0]["title"]; ?>" title="<?php echo $navigation[0]["title"]; ?>">Your Business</a>
+                    <a href="/" alt="<?php echo $navigation["Home"]["title"]; ?>">" title="<?php echo $navigation["Home"]["title"]; ?>">">Your Business</a>
                 </div>
                 <div class="col large-9">
                     <ul class="navi">
@@ -40,7 +40,7 @@
         <div class="mobile-nav">
             <div class="row">
                 <div class="col default-4 logo">
-                    <a href="/" alt="<?php echo $navigation[0]["title"]; ?>" title="<?php echo $navigation[0]["title"]; ?>">Your Business</a>
+                    <a href="/" alt="<?php echo $navigation["Home"]["title"]; ?>">" title="<?php echo $navigation["Home"]["title"]; ?>">">Your Business</a>
                 </div>
                 <div class="col default-8 flex-end">
                     <input type="checkbox" name="mobile-nav" id="mobile-nav">

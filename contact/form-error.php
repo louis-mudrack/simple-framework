@@ -12,7 +12,7 @@
                 unset($_SESSION['errors']);
             }
             ?>
-            <a href="/contact/index" title="<?php echo $navigation[0]["title"]; ?>" class="btn">Back to form</a>
+            <a href="/contact/index" title="<?php echo $navigation["Kontakt"]["title"]; ?>" class="btn">Back to form</a>
         </div>
     </div>
     <?php require(SITE_ROOT."misc/site.exit.php"); ?>

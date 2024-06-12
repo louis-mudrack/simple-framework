@@ -1,28 +1,28 @@
 <?php
 
-function generateNavItem($item, $isFooter = false) {
+function generateNavItem($name, $item, $isFooter = false) {
     if (!$isFooter && isset($item['navExclude']) && $item['navExclude']) {
         return '';
     }
 
     $isActive = isNavItemActive($item) ? 'active' : '';
-    $className = generateClassName($item);
+    $className = generateClassName($name, $item);
 
-    $liContent = generateLink($item, $isActive);
+    $liContent = generateLink($name, $item, $isActive);
 
     if (isset($item['sub'])) {
         $subItemsHTML = '';
-        foreach ($item['sub'] as $subItem) {
+        foreach ($item['sub'] as $subName => $subItem) {
             if (isset($subItem['navExclude']) && $subItem['navExclude']) {
                 continue;
             }
             
             $subIsActive = isNavItemActive($subItem) ? 'active' : '';
-            $subItemsHTML .= generateLink($subItem, $subIsActive, true);
+            $subItemsHTML .= generateLink($subName, $subItem, $subIsActive, true);
         }
         
         if (!empty($subItemsHTML)) {
-            $liContent = "<span>{$item['name']}</span><ul class='sub'><li class='$className'>$liContent</li>{$subItemsHTML}</ul>";
+            $liContent = "<span>{$subName}</span><ul class='sub'><li class='$className'>$liContent</li>{$subItemsHTML}</ul>";
             $className .= ' has-sub';
         }
     }
@@ -31,19 +31,22 @@ function generateNavItem($item, $isFooter = false) {
 }
 
 function isNavItemActive($item) {
-    $requestUri = $_SERVER['REQUEST_URI'];
-    return ($requestUri === $item['url'] || strpos($requestUri, $item['url']) !== false);
+    $requestUri = strtok($_SERVER['REQUEST_URI'], '?');
+    if ($item['url'] === '/') {
+        return $requestUri === '/';
+    }
+    return (strpos($requestUri, $item['url']) === 0);
 }
 
-function generateClassName($item) {
+function generateClassName($name, $item) {
     $urlPath = trim($item['url'], '/');
     if ($urlPath === '') {
-        return str_replace(' ', '-', strtolower($item['name']));
+        return str_replace(' ', '-', strtolower($name));
     }
     return str_replace('/', '-', $urlPath);
 }
 
-function generateLink($item, $isActiveClass, $sub = false) {
+function generateLink($name, $item, $isActiveClass, $sub = false) {
     $aHref = $item['url'];
     if (isset($item['external']) && $item['external']) {
         $aHref .= "' target='_blank";
@@ -55,9 +58,9 @@ function generateLink($item, $isActiveClass, $sub = false) {
     }
 
     if ($sub) {
-        return "<li><a href='{$aHref}' title='{$item['title']}' alt='{$item['title']}' class='" . implode(' ', $aClasses) . "'>{$item['name']}</a></li>";
+        return "<li><a href='{$aHref}' title='{$item['title']}' class='" . implode(' ', $aClasses) . "'>{$name}</a></li>";
     } else {
-        return "<a href='{$aHref}' title='{$item['title']}' alt='{$item['title']}' class='" . implode(' ', $aClasses) . "'>{$item['name']}</a>";
+        return "<a href='{$aHref}' title='{$item['title']}' class='" . implode(' ', $aClasses) . "'>{$name}</a>";
     }
 
 }
@@ -66,8 +69,8 @@ function generateLink($item, $isActiveClass, $sub = false) {
 ob_start();
 
 // Create main navigation
-foreach ($navigation as $item) {
-    echo generateNavItem($item);
+foreach ($navigation as $name => $item) {
+    echo generateNavItem($name, $item);
 }
 
 // Get the navigation HTML and clean the output buffer
@@ -77,9 +80,9 @@ $mainNav = ob_get_clean();
 ob_start();
 
 // Create footer navigation
-foreach ($navigation as $item) {
+foreach ($navigation as $name => $item) {
     if (isset($item['footerNav']) && $item['footerNav']) {
-        echo generateNavItem($item, true);
+        echo generateNavItem($name, $item, true);
     }
 }
 
