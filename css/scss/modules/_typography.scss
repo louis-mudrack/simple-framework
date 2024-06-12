@@ -4,13 +4,14 @@
 // * font-size:em(12px) (if based on body font size)
 // * font-size:em(12px, 18px) (if based on a parent with a relativ font size of 18px)
 // *
-// * @param	{string} $to-size	 Target pixel value
-// * @param	{string} $from-size: $base-font-size (optional) Font size of the parent
-// * @return {string}			 Calculated em value
+// * @param	{string} $to-size       Target pixel value
+// * @param	{string} $from-size:    $base-font-size (optional) Font size of the parent
+// * @return {string}               Calculated em value
 @function em($to-size, $from-size: $base-font-size) {
 	@if $to-size == 0px {
-		@return 0;
+			@return 0;
 	}
+
 	@return $to-size / $from-size * 1em;
 }
 
@@ -20,12 +21,131 @@
 // * font-size:rem(12px) (if based on body font size)
 // * font-size:rem(12px, 18px) (if based on a parent with a relativ font size of 18px)
 // *
-// * @param	{string} $to-size	 Target pixel value
-// * @param	{string} $from-size: $base-font-size (optional) Font size of the parent
-// * @return {string}			 Calculated rem value
+// * @param	{string} $to-size       Target pixel value
+// * @param	{string} $from-size:    $base-font-size (optional) Font size of the parent
+// * @return {string}               Calculated rem value
 @function rem($to-size, $from-size: $base-font-size) {
 	@if $to-size == 0px {
-		@return 0;
+			@return 0;
 	}
+
 	@return $to-size / $from-size * 1rem;
+}
+
+// * Calculates the percent-based body font size based on a pixel value.
+// *
+// * Usage:
+// * body {
+// *    font-size:body-font-size();
+// * }
+// *
+// * @type {string} $pixel-value The layout’s base font size
+@function body-font-size($pixel-value: $base-font-size) {
+	@return ($base-font-size / 1px) * 100 / 16#{"%"};
+}
+
+/// String Replace Function
+/// @group functions
+/// @param $string
+/// @param $search
+/// @param $replace [""]
+@function str-replace($string, $search, $replace: "") {
+	$index: str-index($string, $search);
+
+	@if $index {
+			@return str-slice($string, 1, $index - 1) + $replace +str-replace(str-slice($string, $index + str-length($search)),
+					$search,
+					$replace);
+	}
+
+	@return $string;
+}
+
+/// SCSS @font-face mixin
+/// @author [Malte Zoudlik](https://github.com/ma-zou
+/// @param $font-name - font-family
+/// @param $file-name - URL to fonts
+/// @param $weights [null] - font-weight
+/// @param $types (woff2 woff svg) - font extensions to add to src
+/// @param $style [null] - font-style
+@mixin font-face-V2($font-name, $file-name, $weights: null, $types: woff, $style: null) {
+	@if $types == all {
+			$types: (
+					woff2,
+					woff,
+					svg
+			);
+	}
+
+	$extmods: (
+			svg: "#" + str-replace($font-name, " ", "")
+	);
+
+	@each $weight in $weights {
+			$src: null;
+			$srcWeight: "";
+
+			@if($weight != null) {
+					$weight: to-string($weight);
+
+					@if (str-index($weight, "400")) {
+							$srcWeight: if(str-index($weight, "italic"), "italic", "regular");
+					}
+
+					@else {
+							$srcWeight: str-replace($weight, "|", "");
+					}
+
+					$srcWeight: "-" + $srcWeight;
+			}
+
+			@each $type in $types {
+					$extmod: if(map-has-key($extmods, $type), $type + map-get($extmods, $type), $type);
+					$src: append($src, url(quote("../fonts/" + $file-name + $srcWeight + "." + $extmod)), comma);
+			}
+
+			@font-face {
+					font-family: quote($font-name);
+					$weight: to-string($weight);
+
+					@if(str-index($weight, '|italic')) {
+							font-weight: unquote(str-slice($weight, 1, str-index($weight, '|italic') - 1));
+							font-style: italic;
+					}
+
+					@else if ($weight != null) {
+							font-weight: unquote($weight);
+					}
+
+					@if($style != null) {
+							font-style: $style;
+					}
+
+					@else if not (str-index($weight, '|italic')) {
+							font-style: normal;
+					}
+
+					font-display: block;
+					src: $src;
+			}
+	}
+}
+
+/**
+* let the size scale linear between $min- and $max-breakpoint from $min to $max
+* $scale-factor is used when no min value is set to calculate the min value, but min will not be less than $base-font-size
+*/
+@function _scale($max, $min: 0, $min-breakpoint: 480px, $max-breakpoint: 1620px, $scale-factor: .75) {
+	@if $min == 0 {
+			$min: $max * $scale-factor;
+
+			@if($min < $base-font-size) {
+					$min: $base-font-size;
+			}
+	}
+
+	$slope: ($max - $min) / ($max-breakpoint - $min-breakpoint);
+	$y-axis-intersection: - $min-breakpoint * $slope + $min;
+
+	@return clamp(#{rem($min)}, #{rem($y-axis-intersection) #{"+ "} (($slope * 100) * 1vw)}, #{rem($max)});
 }

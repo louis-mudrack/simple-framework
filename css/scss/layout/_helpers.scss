@@ -1,16 +1,405 @@
-.btn {
-    padding: .5rem;
-    border: 2px solid $primary;
-    background-color: transparent;
-    font-family: "Supreme";
-    font-weight: bold;
-    display: inline-block;
-    &:hover {
-        cursor: pointer;
+.margin-bottom {
+    margin-bottom: rem($base-line-height);
+
+    &.no-margin-bottom {
+        margin-bottom: 0;
     }
 }
 
-.flex-end {
+.z-bottom {
+    z-index: -1;
+}
+
+.z-default {
+    z-index: 0;
+}
+
+.z-top {
+    z-index: 1;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.relative {
+    position: relative;
+}
+
+.static {
+    position: static;
+}
+
+.sticky {
+    position: sticky;
+}
+
+.fixed {
+    position: fixed;
+}
+
+.inset {
+    inset: 0;
+}
+  
+.highlight {
+    color: $secondary;
+}
+
+#back-to-top {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    padding: $base-gap;
+    background-color: $primary;
+    color: $light;
+    width: 50px;
+    height: 50px;
     display: flex;
-    justify-content: end;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.btn {
+    @extend %animated-transform;
+    @extend .margin-bottom;
+    appearance: none;
+    background: $primary;
+    border: none;
+    color: $dark;
+    cursor: pointer;
+    display: inline-flex;
+    font-size: rem($base-font-size);
+    line-height: rem($base-line-height);
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: _scale(16px, 14px);
+    padding: _scale(15px, 10px) _scale(25px, 20px);
+    gap: 0.8rem;
+    text-align: center;
+    align-items: center;
+    text-decoration: none;
+    font-family: $main-font;
+
+    &:hover {
+        background: $dark;
+        color: $primary;
+        outline: 1px solid $primary;
+    }
+
+    &:active {
+        background: $dark;
+        color: $primary;
+    }
+
+    &:focus {
+        background: $dark;
+        color: $primary;
+    }
+
+    // color buttons
+    @each $name, $color in $colors {
+        $textColor: get-matching-foreground-color($color);
+        $colorFunction: "lighten";
+
+        @if(lightness($color) > 50%) {
+            $colorFunction: "darken";
+        }
+
+        &.btn-#{$name} {
+            background: $color;
+            color: $textColor;
+
+            &.btn-outline {
+                background-color: transparent;
+                outline: $base-outline;
+                outline-offset: -1px;
+                outline-color: $color;
+                color: $color;
+            }
+
+            &:hover {
+                background: call($colorFunction, $color, 10%);
+                color: $textColor;
+            }
+
+            &:active {
+                background: call($colorFunction, $color, 20%);
+                color: $textColor;
+            }
+
+            &:focus {
+                background: call($colorFunction, $color, 30%);
+                color: $textColor;
+            }
+        }
+    }
+}
+
+.clear {
+    clear: both;
+    float: none;
+}
+
+.clearfix {
+    @include pie-clearfix;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.hideText {
+    @include hide-text();
+    display: inline-block;
+    overflow: hidden;
+    width: 0;
+}
+
+.float-left {
+    float: left;
+}
+
+img.float-left {
+    margin-right: 1rem;
+}
+
+.float-right {
+    float: right;
+}
+
+img.float-right {
+    margin-left: 1rem;
+}
+
+.fluid {
+    height: auto;
+    width: 100%;
+}
+
+.non-fluid {
+    width: auto !important;
+}
+
+.align-left {
+    text-align: left;
+}
+
+.align-right {
+    text-align: right;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.wide {
+    width: 100%;
+    display: block;
+}
+
+.width-100 {
+    width: 100%;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.semi-bold {
+    font-weight: 600;
+}
+
+.video-container {
+    @extend .margin-bottom;
+    @extend .border-radius;
+
+    body &:not(.video-tag):not(.format-auto) {
+        @each $format in $video-formats {
+            $str: str-replace($format, "/", "-");
+
+            @if (index(($video-formats), ($format))==1) {
+                aspect-ratio: #{$format};
+            }
+
+            @else {
+                &.format-#{$str} {
+                    aspect-ratio: #{$format};
+                }
+            }
+        }
+
+        video {
+            height: 100%;
+        }
+    }
+
+    video {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        display: block;
+        @extend .border-radius;
+    }
+}
+
+:has(.video-container-background) {
+    @extend .absolute;
+    @extend .inset;
+    @extend .z-default;
+    
+    > * {
+        height: 100%;
+
+        > .video-container-background {
+            height: 100%;
+            width: 100%;
+        }
+    }
+}
+
+.opening-hours-suffix dl {
+    dd:after {
+        html[lang="de"] & {
+            content: " Uhr";
+        }
+    }
+}
+
+.border-radius {
+    border-radius: $base-border-radius;
+
+    &.no-border-radius {
+        border-radius: 0;
+    }
+}
+
+.box-shadow {
+    box-shadow: $base-box-shadow;
+
+    &.no-box-shadow {
+        box-shadow: none;
+    }
+}
+
+// Animations
+%animated-transform {
+    transition: 0.3s;
+}
+
+// grid system classes + flex helpers
+.flex {
+    display: flex;
+}
+
+.gap {
+    gap: rem($base-gap);
+}
+
+.remove-gaps {
+    @include calc-gap(0);
+}
+
+.row,
+.flex {
+    &.wrap {
+        flex-wrap: wrap;
+    }
+
+    //vertical alignment
+    &.stretch {
+        align-items: stretch;
+    }
+
+    &.top {
+        align-items: flex-start;
+    }
+
+    &.middle {
+        align-items: center;
+    }
+
+    &.bottom {
+        align-items: flex-end;
+    }
+
+    //horizontal alignment
+    &.start {
+        justify-content: flex-start;
+    }
+
+    &.center {
+        justify-content: center;
+    }
+
+    &.end {
+        justify-content: flex-end;
+    }
+
+    &.around {
+        justify-content: space-around;
+    }
+
+    &.between {
+        justify-content: space-between;
+    }
+}
+
+@each $name, $color in $colors {
+    .color-#{$name} {
+        color: $color
+    }
+
+    .bg-color-#{$name} {
+        background-color: $color;
+    }
+
+    .border-#{$name} {
+        outline: $base-outline;
+        outline-offset: -1px;
+        outline-color: $color;
+    }
+}
+
+.box {
+    padding: rem($base-gap);
+    @extend .border-radius;
+
+    &.box-inline {
+        display: inline-block;
+    }
+
+    >*:last-child {
+        @extend .no-margin-bottom;
+    }
+}
+
+body {
+    .background-image-container {
+        @extend .relative;
+    }
+
+    figure.background-image > picture > img {
+        @extend .absolute;
+        @extend .inset;
+        @extend .z-bottom;
+        object-fit: cover;
+        border-radius: 0;
+    }
+}
+
+/**
+* helper classes for breakpoint based column count
+*/
+$column-count-max: 3;
+@each $breakpointName, $list in $gridMap {
+    @for $i from 1 through $column-count-max {
+        @include breakpoint(#{$breakpointName}) {
+        .#{$breakpointName}-column-count-#{$i} {
+                column-count: $i;
+                break-inside: avoid;
+            }
+        }
+    }
 }

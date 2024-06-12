@@ -1,11 +1,19 @@
 /**
  * Grid system
  */
+ :root {
+  // store the scrollbar width
+  // only works if there is no parent width set other than body width
+  // used to optimize "vw" calculations because they dont adapt to the presence of a scrollbar
+  --scrollbar-width: calc(100vw - 100%);
+  --viewport-without-scrollbar: calc(100vw - var(--scrollbar-width));
+  --row-max-width-dynamic: calc(min(#{rem($rowMaxWidth)}, var(--viewport-without-scrollbar)));
+}
 
 .row {
   margin-left: auto;
   margin-right: auto;
-  max-width: $rowMaxWidth;
+  max-width: rem($rowMaxWidth);
   width: 100%;
   position: relative;
   display: flex;
@@ -15,100 +23,149 @@
   justify-content: flex-start;
   align-items: stretch;
 
-  &.full {
-    max-width: none;
+  &:not(.full-width) {
+      .row {
+          margin-left: -#{rem($base-gap)};
+          padding-left: 0;
+          padding-right: 0;
+          max-width: calc(100% + #{rem($base-gap * 2)});
+          width: calc(100% + #{rem($base-gap * 2)});
+      }
   }
 
-  .row {
-    margin-left: -#{$baseGap};
-    padding-left: 0;
-    padding-right: 0;
-    max-width: calc(100% + #{$baseGap * 2});
-    width: calc(100% + #{$baseGap * 2});
+  &.full-width {
+      max-width: none;
   }
 
   > .row {
-    margin-left:0;
-    margin-right:0;
-    padding-left:0;
-    padding-right:0;
-    max-width: 100%;
-    width: 100%;
-    flex-basis: 100%;
+      margin: 0;
+      padding: 0;
+      max-width: 100%;
+      width: 100%;
+      flex-basis: 100%;
   }
 
-  &.breakRight, 
-  &.breakLeft {
-    max-width: calc(50vw + #{$rowMaxWidth / 2 - 9});
-  }
-  &.breakRight {
-    margin-left: auto;
-    margin-right: 0;
-    justify-content: flex-start;
-  }
-  &.breakLeft {
-    margin-right: auto;
-    margin-left: 0;
-    justify-content: flex-end;
+  @include breakpoint(cut) {
+      &.break-right,
+      &.break-left {
+          max-width: calc(50vw + (var(--row-max-width-dynamic) / 2 - var(--scrollbar-width) / 2));
+      }
+
+      &.break-right {
+          margin-left: auto;
+          margin-right: 0;
+          justify-content: flex-start;
+      }
+
+      &.break-left {
+          margin-right: auto;
+          margin-left: 0;
+          justify-content: flex-end;
+      }
   }
 }
 
 // Initialize grid
 .col {
   float: left;
-  padding-left: $baseGap;
-  padding-right: $baseGap;
+  padding-left: rem($base-gap);
+  padding-right: rem($base-gap);
   max-width: 100%;
   width: 100%;
-  flex: 0 0 auto;
-  flex-grow: 1;
-  flex-basis: 100%;
+  flex: 1 0 100%;
   box-sizing: border-box;
 }
 
 // remove padding left and right from cols
-.noGutter,
-.noGutter > .col {
+.no-gutter,
+.no-gutter > .col {
   padding-left: 0;
   padding-right: 0;
 }
 
+// add padding left and right from cols
+.gutter,
+.gutter > .col {
+  padding-left: rem($base-gap);
+  padding-right: rem($base-gap);
+}
+
+@include for-each-breakpoint("gutter") {
+  padding-left: rem($base-gap);
+  padding-right: rem($base-gap);
+}
+
+@include for-each-breakpoint("gutter > .col") {
+  padding-left: rem($base-gap);
+  padding-right: rem($base-gap);
+}
+
 @each $bp, $obj in $gridMap {
   @include breakpoint($bp) {
-    @each $key, $val in $obj {
-      @if $key == cols or $key == prefix or $key == suffix or $key == width {
-        @each $elm in $val {
-          @if $key == cols {
-            .col.#{$bp}-#{$elm} {
-              @if($elm != auto) {
-                max-width: grid-size($elm, $columnCount);
-                flex-basis: grid-size($elm, $columnCount);
-                @include breakpoint(cut) {
-                  .row.breakLeft > &, .row.breakRight > & {max-width: $rowMaxWidth / 12 * $elm;}
-                }
-              } @else {
-                max-width: 100%;
-                flex-basis: 0;
-                .row.breakLeft > &, .row.breakRight > & {max-width: 100%;}
+      @each $key, $val in $obj {
+          @if $key == cols or $key == prefix or $key == suffix or $key == width {
+              @each $elm in $val {
+                  @if $key == cols {
+                      .col.#{$bp}-#{$elm} {
+                          @if($elm !=auto) {
+                              max-width: grid-size($elm, $column-count);
+                              flex-basis: grid-size($elm, $column-count);
+
+                              @include breakpoint(cut) {
+                                  .row.break-left > &,
+                                  .row.break-right > & {
+                                      max-width: calc(var(--row-max-width-dynamic) / 12 * #{$elm})
+                                  }
+                              }
+                          }
+
+                          @else {
+                              max-width: 100%;
+                              flex-basis: 0;
+
+                              .row.break-left > &,
+                              .row.break-right > & {
+                                  max-width: 100%;
+                              }
+                          }
+                      }
+                  }
+
+                  @else if $key == suffix {
+                      .col.#{$bp}-suffix-#{$elm} {
+                          margin-right: grid-size($elm, $column-count);
+
+                          @include breakpoint(cut) {
+                              .row.break-left > &,
+                              .row.break-right > & {
+                                  margin-right: calc(var(--row-max-width-dynamic) / 12 * #{$elm})
+                              }
+                          }
+                      }
+                  }
+
+                  @else if $key == prefix {
+                      .col.#{$bp}-prefix-#{$elm} {
+                          margin-left: grid-size($elm, $column-count);
+
+                          @include breakpoint(cut) {
+                              .row.break-left > &,
+                              .row.break-right > & {
+                                  margin-left: calc(var(--row-max-width-dynamic) / 12 * #{$elm})
+                              }
+                          }
+                      }
+                  }
               }
-            }
-          } @else if $key == suffix {
-            .col.#{$bp}-suffix-#{$elm} {
-              margin-right: grid-size($elm, $columnCount);
-            }
-          } @else if $key == prefix {
-            .col.#{$bp}-prefix-#{$elm} {
-              margin-left: grid-size($elm, $columnCount);
-            }
           }
-        }
-      } @else {
-        .#{$bp}-#{$key} {
-          @each $elm in $val {
-            #{nth($elm, 1)}: #{nth($elm, 2)};
+
+          @else {
+              .#{$bp}-#{$key} {
+                  @each $elm in $val {
+                      #{nth($elm, 1)}: #{nth($elm, 2)};
+                  }
+              }
           }
-        }
       }
-    }
   }
 }

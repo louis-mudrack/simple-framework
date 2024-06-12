@@ -3,21 +3,11 @@ form {
     label {
         display: block;
     }
-    label {
-        &:has([type="checkbox"]) {
-            display: flex;
-            gap: rem(5px, $bpContext);
-            margin-bottom: $baseGap;
-            a {
-                display: inline-block;
-            }
-        }
-    }
     input, textarea {
         &:not([type="checkbox"], [type="submit"]) {
             width: 100%;
             padding: .5rem;
-            margin-bottom: $baseGap;
+            margin-bottom: $base-gap;
         }
         border: 2px solid $primary;
     }
@@ -33,5 +23,44 @@ form {
         &:has(input[required].error) {
             color: $warn;
         }
+    }
+
+    [type="checkbox"] {
+        display: inline-block;
+        margin: 0 rem($base-font-size / 2) 0 0;
+        padding: 0;
+        width: rem($base-font-size );
+        height: rem($base-font-size );
+        flex-shrink: 0;
+        order: -1;
+
+        &[id*="privacypolicy"],
+        &[id*="datenschutz"],
+        &[id*="rueckrufbitte-ja"],
+        &[id*="callback-yes"] {
+            margin-top: calc((#{rem($base-line-height)} - #{rem($base-font-size)}) / 2 + 1rem);
+            // @extend .margin-bottom;
+        }
+
+        body.iexplore & {
+            border: none;
+
+            &:focus {
+                background: none;
+            }
+        }
+    }
+
+    [type="radio"] {
+        margin: 0 rem($base-font-size / 2) 0 0;
+        width: rem($base-font-size);
+        min-height: auto;
+        flex-shrink: 0;
+    }
+
+    button,
+    [type="submit"] {
+        @extend .btn;
+        width: 100%;
     }
 }

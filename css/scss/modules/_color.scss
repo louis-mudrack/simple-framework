@@ -1,0 +1,21 @@
+// color helper map
+$colors: (
+    "primary": $primary,
+    "secondary": $secondary,
+    "light": $light,
+    "medium": $medium,
+    "dark": $dark,
+    "border": $border,
+    "warn": $warn
+);
+
+// returns a matching foreground color for given color
+@function get-matching-foreground-color($color) {
+    $foreground: $light;
+
+    @if(lightness($color) > 50%) {
+        $foreground: $dark;
+    }
+
+    @return $foreground;
+}

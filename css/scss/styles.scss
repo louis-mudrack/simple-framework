@@ -1,19 +1,35 @@
-/** Bootstrapping modules **/
+// Import modules
 @import "modules/utilities";
 @import "modules/typography";
-@import "modules/fonts";
-@import "modules/icomoon";
 @import "modules/responsive";
 
-/** Base configuration **/
+// Base configuration
 @import "config";
+@import "modules/cssVariables";
 
-/** Grid systems **/
+// @font-face declarations
+@import "layout/fonts";
+
+// Grid system
 @import "modules/flexgrid";
 
-/** Page styles **/
-@import "modules/functions";
+@import "modules/color";
+@import "modules/slider";
+
+// Icon font styles
+@import "vendor/icomoon";
+
+// thumbnail hover example
+@import "modules/thumbHover";
+
+// space distance classes
+@import "modules/space";
+
+// Page layout/design
+@import "layout/globals";
 @import "layout/helpers";
 @import "layout/navigation";
-@import "layout/forms";
 @import "layout/page";
+
+// Form styles
+@import "layout/forms";

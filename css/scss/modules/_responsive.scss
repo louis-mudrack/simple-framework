@@ -1,9 +1,7 @@
 @mixin breakpoint($point, $direction: min) {
   @if map-has-key($gridMap, $point) {
-    @media ( #{$direction+'-width'}:
-        if( $direction == min, nth(map-get(map-get($gridMap, $point), width), 1), nth(map-get(map-get($gridMap, $point), width), 1) - em(1px, $bpContext))
-    ) {
-      @content;
-    }
+      @media (#{$direction+'-width'}: if($direction == min, nth(map-get(map-get($gridMap, $point), width), 1), nth(map-get(map-get($gridMap, $point), width), 1) - em(1px, $bpContext))) {
+          @content;
+      }
   }
 }

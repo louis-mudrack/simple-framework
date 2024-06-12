@@ -1,0 +1,389 @@
+* {
+  margin: 0;
+  padding: 0;
+
+  &,
+  &:before,
+  &:after {
+      box-sizing: inherit;
+  }
+}
+
+::selection {}
+::-moz-selection {}
+
+strong, b {
+  font-weight: 600;
+}
+
+// DO NOT set font-size and line-height here!
+// Adjust $base-font-size and $base-line-height in _config.scss
+html {
+  background: $dark;
+  box-sizing: border-box;
+  color: $light;
+  font-family: $main-font;
+  font-size: 100% * ($base-font-size / 16px);
+  hyphens: manual;
+  line-height: rem($base-line-height);
+  scroll-behavior: smooth;
+
+  /* disable text resize in landscape. e.g. on iphone */
+  text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+
+  // &::-webkit-scrollbar {
+  //     width: rem(13px);
+  // }
+
+  // &::-webkit-scrollbar-track {
+  //     background-color: $light;
+  //     border-left: 1px solid darken($light, 10%);
+  // }
+
+  // &::-webkit-scrollbar-thumb {
+  //     border-radius: rem(8px);
+  //     border: rem(3px) solid transparent;
+  //     background-clip: content-box;
+  //     background-color: darken($light, 20%);
+  // }
+}
+
+body {
+  line-height: rem($base-line-height);
+  opacity: 1 !important;
+
+  &:not(.javascript) {
+      * {
+          transition: none !important;
+      }
+  }
+}
+
+iframe,
+[data-iframe] {
+  display: block;
+  border: none;
+  width: 100%;
+
+  &[data-iframe="googlemaps"] {
+      @extend .margin-bottom;
+  }
+}
+
+address {
+  font-style: normal;
+}
+
+/**
+* Headlines
+*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  @extend .margin-bottom;
+  display: block;
+  text-rendering: optimizeLegibility;
+  hyphens: auto;
+  text-wrap: balance;
+  font-family: $display-font;
+  /** needed for safari **/
+  -webkit-hyphens: auto;
+
+  /* Use this to let headlines break in Chrome Desktop
+  body.platformWindows.chrome &,
+  body.platformLinux.chrome & {
+      word-break: break-all;
+  }
+  */
+  span {
+      display: block;
+      font-weight: 300;
+  }
+}
+
+h1,
+.h1 {
+  font-size: _scale($h1-size, $h1-size / 1.75);
+  line-height: _scale($h1-size, $h1-size / 1.75);
+}
+
+h2,
+.h2 {
+  font-size: _scale($h2-size, $h2-size / 1.75);
+  line-height: _scale($h2-size, $h2-size / 1.75);
+}
+
+h3,
+.h3 {
+  font-size: _scale($h3-size, $h3-size / 1.75);
+  line-height: _scale($h3-size, $h3-size / 1.75);
+}
+
+h4,
+.h4 {
+  font-size: _scale($h4-size, $h4-size / 1.75);
+  line-height: _scale($h4-size, $h4-size / 1.75);
+  }
+  
+  h5,
+  .h5 {
+    font-size: _scale($h5-size, $h5-size / 1.75);
+  line-height: _scale($h5-size, $h5-size / 1.75);
+  }
+  
+  h6,
+  .h6 {
+    font-size: _scale($h6-size, $h6-size / 1.75);
+    line-height: _scale($h6-size, $h6-size / 1.75);
+}
+
+/**
+* Links
+*/
+a {
+  color: $primary;
+  word-wrap: break-word;
+  text-decoration: none;
+
+  &:hover {
+      color: lighten($primary, 20%);
+  }
+
+  &:focus {
+      color: lighten($primary, 25%);
+  }
+
+  &:active {
+      color: lighten($primary, 30%);
+  }
+
+  img {
+      border: none;
+  }
+
+  &[href^="tel"] {
+      color: inherit;
+  }
+  &[href^="mail"] {
+      text-decoration: underline;
+  }
+}
+
+a:not(.btn):focus,
+[tabindex]:focus {
+  outline: $outline;
+  outline-offset: rem(5px);
+}
+
+hr,
+.hr {
+  display: flex;
+  background: $medium;
+  border: none;
+  clear: both;
+  height: rem(1px);
+  margin: 1rem 0;
+  flex-basis: 100%;
+}
+
+ul,
+ol {
+  list-style: none;
+
+  &.styled-list {
+      li {
+          padding-left: rem(15px);
+          margin-bottom: rem(7px);
+
+          &:before {
+              @include icon(angle-right);
+              text-indent: rem(-15px);
+          }
+      }
+
+      ul {
+          margin-left: 1rem;
+          margin-bottom: 0;
+      }
+  }
+}
+
+dl {
+  &.styled-list {
+      @include pie-clearfix;
+
+      dt,
+      dd {
+          display: block;
+          background: lighten($dark, 10%);
+          padding: rem(15px);
+      }
+
+      dt {
+          border-top-left-radius: $base-border-radius;
+          border-top-right-radius: $base-border-radius;
+          padding-bottom: 0;
+          font-weight: bold;
+      }
+
+      dd {
+          padding-top: 0;
+          border-bottom-left-radius: $base-border-radius;
+          border-bottom-right-radius: $base-border-radius;
+
+          + dt {
+              margin-top: rem(10px);
+          }
+
+          + dd {
+              margin-top: rem(-15px);
+          }
+      }
+  }
+
+  &.float-list {
+      @include pie-clearfix;
+
+      dt,
+      dd {
+          display: block;
+          vertical-align: top;
+          float: left;
+      }
+
+      dt {
+          padding-right: 0.5rem;
+          width: 40%;
+          clear: left;
+      }
+
+      dd {
+          width: 60%;
+      }
+  }
+}
+
+ol {
+  &.styled-list {
+      counter-reset: item;
+
+      li {
+          counter-increment: item;
+
+          &:before {
+              content: counters(item, ".") ". ";
+          }
+      }
+
+      ol {
+          margin-bottom: 0;
+
+          li {
+              &:before {
+                  content: counters(item, ".") " ";
+                  margin-right: rem(5px);
+              }
+          }
+      }
+  }
+}
+
+/*
+* responsive images
+*/
+figure {
+  > a,
+  > picture {
+      @extend .margin-bottom;
+  }
+
+  a,
+  picture {
+      display: block;
+
+      img {
+          margin-bottom: 0;
+      }
+  }
+}
+
+img {
+  vertical-align: bottom;
+  float: none;
+  height: auto;
+  max-width: 100%;
+  width: 100%;
+}
+
+/**
+* Tables
+*/
+main {
+  table {
+      display: table;
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 100%;
+      text-align: left;
+      font-size: rem($base-font-size);
+
+      @include breakpoint(small, max) {
+          overflow-x: auto;
+          display: block;
+      }
+
+      caption {
+          text-align: left;
+          padding: rem($base-gap) rem($base-gap) rem(25px);
+          display: table-caption;
+          font-weight: bold;
+          font-size: 1.2rem;
+      }
+
+      thead {
+          border-collapse: collapse;
+          display: table-header-group;
+      }
+
+      tbody {
+          width: 100%;
+          overflow-x: scroll;
+          display: table-row-group;
+
+          tr {
+              padding: rem($base-gap) 0;
+
+              &:not(:last-child) {
+                  border-bottom: rem(1px) solid $medium;
+              }
+          }
+      }
+
+      tr {
+          display: table-row;
+      }
+
+      th,
+      td {
+          padding: rem($base-gap);
+          display: table-cell;
+          vertical-align: top;
+      }
+
+      @include breakpoint(small, max) {
+          td {
+              min-width: 50vw;
+          }
+      }
+  }
+}
