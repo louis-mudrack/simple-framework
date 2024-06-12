@@ -37,7 +37,7 @@ if (isset($_GET['generateSitemap'])) {
 
         // Save the sitemap to a file
         $sitemap->asXML('sitemap.xml');
-        echo '<span class="framework-alert">Sitemap generated successfully.</span>';
+        echo '<span class="notification notification-success">Sitemap generated successfully.</span>';
     }
 
     generateSitemap();

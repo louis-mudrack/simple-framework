@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title><?php print $config["current-page"]["title"]; ?></title>
         <meta name="description" content="<?php print $config["current-page"]["desc"]; ?>">
-        <meta name="author" content="<?php print $text["client"]; ?>">
+        <meta name="author" content="<?php print $config["client"]; ?>">
         <meta property="og:title" content="<?php print $config["current-page"]["title"]; ?>">
         <meta property="og:description" content="<?php print $config["current-page"]["desc"]; ?>">
         <meta property="og:type" content="website">
@@ -14,9 +14,9 @@
         <meta property="og:image" content="/images/social-branding.png">
         <meta property="og:site_name" content="<?php print $config["current-page"]["title"]; ?>">
         <meta name="thumbnail" content="/images/social-branding.png">
-        <meta name="theme-color" content="<?php print $text["theme-color"]; ?>">
+        <meta name="theme-color" content="<?php print $config["theme-color"]; ?>">
         <meta name="format-detection" content="telephone=no">
-        <meta name="keywords" content="<?php print $text["keywords"]; ?>">
+        <meta name="keywords" content="<?php print $config["keywords"]; ?>">
         <base href="<?php print $config["baseurl"]; ?>">
         <link rel="canonical" href="<?php print $config["url"]; ?>">
         <!-- FAVICON -->
@@ -28,7 +28,7 @@
         <nav class="nav">
             <div class="row">
                 <div class="col large-3 logo">
-                    <a href="/" alt="<?php echo $navigation["Home"]["title"]; ?>">" title="<?php echo $navigation["Home"]["title"]; ?>">">Your Business</a>
+                    <a href="/" title="<?php echo $navigation["Home"]["title"]; ?>">YourBusiness</a>
                 </div>
                 <div class="col large-9">
                     <ul class="navi">
@@ -40,7 +40,7 @@
         <div class="mobile-nav">
             <div class="row">
                 <div class="col default-4 logo">
-                    <a href="/" alt="<?php echo $navigation["Home"]["title"]; ?>">" title="<?php echo $navigation["Home"]["title"]; ?>">">Your Business</a>
+                    <a href="/" title="<?php echo $navigation["Home"]["title"]; ?>">YourBusiness</a>
                 </div>
                 <div class="col default-8 flex-end">
                     <input type="checkbox" name="mobile-nav" id="mobile-nav">
@@ -67,7 +67,7 @@
         <footer>
             <div class="row">
                 <div class="col small-4 large-6 contact-list">
-                    <a href="mailto:<?php echo $text["mail"]; ?>"><i></i><?php print $text["mail"]; ?></a>
+                    <a href="mailto:<?php echo $config["mail"]; ?>"><i></i><?php print $config["mail"]; ?></a>
                 </div>
                 <div class="col small-7 large-5 small-suffix-1 large-suffix-1">
                     <ul>
@@ -84,13 +84,13 @@
                 "description": "<?php echo $config["current-page"]["desc"]; ?>",
                 "address": {
                     "@type": "PostalAddress",
-                    "streetAddress": "<?php echo $text["address"]; ?>",
-                    "addressLocality": "<?php echo $text["city"]; ?>",
-                    "postalCode": "<?php echo $text["postal"]; ?>",
-                    "addressCountry": "<?php echo $text["country"]; ?>"
+                    "streetAddress": "<?php echo $config["address"]; ?>",
+                    "addressLocality": "<?php echo $config["city"]; ?>",
+                    "postalCode": "<?php echo $config["postal"]; ?>",
+                    "addressCountry": "<?php echo $config["country"]; ?>"
                 },
-                "telephone": "<?php echo $text["phone"]; ?>",
-                "email": "<?php echo $text["mail"]; ?>",
+                "telephone": "<?php echo $config["phone"]; ?>",
+                "email": "<?php echo $config["mail"]; ?>",
                 "url": "<?php echo $config["url"]; ?>",
                 "image": "<?php echo $config["baseurl"]; ?>/images/social-branding.png",
                 "openingHours": "Mo,Tu,We,Th,Fr 10:00-18:00",
@@ -113,6 +113,6 @@
                 ]
             }
         </script>
-        <script src="/js/site.js"></script>
+        <script src="/js/site.js" type="module"></script>
     </body>
 </html>
