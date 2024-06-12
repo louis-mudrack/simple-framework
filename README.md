@@ -26,7 +26,7 @@ Welcome to Simple Framework, a lightweight yet powerful tool designed to streaml
    git clone https://github.com/yourusername/simple-framework.git
    ```
 2. Edit the files and your good to go. You can start in the template and after that use it like in the index.php.
-3. Make sure to fill in the Variables on top of the site.config.php and to edit the navigation in the [site.contents.php](/misc/site.contents.php).
+3. Make sure to fill in the Variables on top of the site.config.php and to edit the navigation in the [site.contents.php](/_settings/site.contents.php).
 
 ## Usage
 
@@ -43,7 +43,7 @@ Utilize the grid system to create a responsive layout.
 
 ### Dynamic Navigation
 
-Implement dynamic navigation by editing [site.contents.php](/misc/site.contents.php). Use this syntax inside of the initial $navigation array.
+Implement dynamic navigation by editing [site.contents.php](/_settings/site.contents.php). Use this syntax inside of the initial $navigation array.
 
 ```php
   "Home" => array(

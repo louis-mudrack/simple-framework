@@ -1,4 +1,4 @@
-<?php $template = 'main'; require_once($_SERVER["DOCUMENT_ROOT"]."/misc/site.config.php") ?>
+<?php $template = 'main'; require_once($_SERVER["DOCUMENT_ROOT"]."/_settings/site.config.php") ?>
 <div class="row">
         <div class="large-8 large-prefix-2 large-suffix-2">
             <h2>An error occured!</h2>
@@ -15,4 +15,4 @@
             <a href="/contact/index" title="<?php echo $navigation["Kontakt"]["title"]; ?>" class="btn">Back to form</a>
         </div>
     </div>
-    <?php require(SITE_ROOT."misc/site.exit.php"); ?>
+    <?php require(SITE_ROOT."_essentials/site.exit.php"); ?>
