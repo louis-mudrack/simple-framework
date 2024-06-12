@@ -52,6 +52,7 @@ html {
 body {
   line-height: rem($base-line-height);
   opacity: 1 !important;
+  overflow: hidden;
 }
 
 iframe,
