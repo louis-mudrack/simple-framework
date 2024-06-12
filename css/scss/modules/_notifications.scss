@@ -1,0 +1,57 @@
+// Define color variables for easy theme management
+$success-color: #4CAF50;
+$info-color: #2196F3;
+$warning-color: #ff9800;
+$error-color: $warn;
+$persistent-color: #9c27b0;
+
+.notification {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  translate: -50% 0;
+  padding: 10px 20px;
+  margin: 10px 0;
+  color: $light;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  cursor: pointer;
+
+  &-success {
+    background-color: $success-color;
+  }
+
+  &-info {
+    background-color: $info-color;
+  }
+
+  &-warning {
+    background-color: $warning-color;
+  }
+
+  &-error {
+    background-color: $error-color;
+  }
+
+  &-persistent {
+    background-color: $persistent-color;
+    animation: blinker 1s linear infinite;
+  }
+
+  button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    border: none;
+    background-color: transparent;
+    color: inherit;
+    cursor: pointer;
+    font-size: 10px;
+  }
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0.5;
+  }
+}
