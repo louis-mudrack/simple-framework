@@ -19,9 +19,9 @@ strong, b {
 // DO NOT set font-size and line-height here!
 // Adjust $base-font-size and $base-line-height in _config.scss
 html {
-  background: $dark;
+  background: $light;
   box-sizing: border-box;
-  color: $light;
+  color: $dark;
   font-family: $main-font;
   font-size: 100% * ($base-font-size / 16px);
   hyphens: manual;
