@@ -43,12 +43,12 @@ Utilize the grid system to create a responsive layout.
 
 ### Dynamic Navigation
 
-Implement dynamic navigation by editing site.contents.php. Use this syntax inside of the initial array.
+Implement dynamic navigation by editing [site.contents.php](/misc/site.contents.php). Use this syntax inside of the initial $navigation array.
 
 ```php
   "Home" => array(
       "url" => "/",
-      "title" => "Welcom | Your Site title",
+      "title" => "Welcome | Your Site title",
       "desc" => "Your site description.",
   ),
 ```
@@ -74,4 +74,4 @@ This project is licensed under the MIT License - see the [LICENSE](/LICENSE.md) 
 
 Thank you for helping with this project:
 
-- @Limiting-Ongoing-Work
+- [Limiting-Ongoing-Work](https://github.com/Limiting-Ongoing-Work)
