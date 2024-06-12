@@ -1,0 +1,81 @@
+// Base class for all lazy-animation elements
+.lazy-animation-initialized {
+  visibility: hidden;
+  &.lazy-animation-in-view {
+    visibility: visible;
+    animation: fadeIn 1s ease forwards;
+    &[data-animation-type="fade-up"] {
+      animation: fadeUp 1s ease forwards;
+    }
+    &[data-animation-type="fade-down"] {
+      animation: fadeDown 1s ease forwards;
+    }
+    &[data-animation-type="slide-left"] {
+      animation: slideLeft 1s ease forwards;
+    }
+    &[data-animation-type="slide-right"] {
+      animation: slideRight 1s ease forwards;
+    }
+  }
+  &.lazy-animation-out-of-view {
+    visibility: hidden;
+  }
+}
+
+// Keyframes for fadeIn animation
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// Keyframes for fadeUp animation
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Keyframes for fadeDown animation
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Keyframes for slideLeft animation
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// Keyframes for slideRight animation
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

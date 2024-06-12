@@ -13,7 +13,7 @@ $persistent-color: #9c27b0;
   padding: 10px 20px;
   margin: 10px 0;
   color: $light;
-  border-radius: 5px;
+  border-radius: $base-border-radius;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   cursor: pointer;
 
