@@ -1,6 +1,56 @@
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    overflow-wrap: wrap;
+// HEADER
+//////////////////////////////
+
+#header {
+    position: relative;
+    width: 100%;
+
+    .branding {
+        display: inline-block;
+    }
+}
+
+// MAIN CONTENT
+//////////////////////////////
+
+main {
+    display: block;
+
+    p,
+    ol,
+    ul,
+    dl,
+    table {
+        @extend .margin-bottom;
+    }
+
+    ul:not(.unstyled-list),
+    dl:not(.unstyled-list),
+    ol:not(.unstyled-list) {
+        @extend .styled-list;
+    }
+
+    img {
+        @extend .margin-bottom;
+    }
+
+    iframe {
+        @extend .border-radius;
+    }
+}
+
+#privacy-policy {
+    a {
+        display: inline-block;
+        word-break: break-all;
+    }
+}
+
+// FOOTER
+//////////////////////////////
+
+#footer {
+    background: $dark;
+    margin-top: 3rem;
+    padding: 1rem 0;
 }

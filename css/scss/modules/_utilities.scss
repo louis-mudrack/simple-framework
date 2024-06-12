@@ -1,4 +1,184 @@
+// * Usage: @include pie-clearfix();
+@mixin pie-clearfix {
+	&:after {
+			content: "";
+			display: table;
+			clear: both;
+	}
+
+	zoom: 1;
+}
+
+// * Hides text in block or inline-block elements
+// * Usage: @include hideText();
+// * $hide-text-direction is defined in _config.scss
+@mixin hide-text($direction: $hide-text-direction) {
+	@if $direction == left {
+			$wider-than-any-screen: -9999em;
+			text-indent: $wider-than-any-screen;
+			overflow: hidden;
+			text-align: left;
+	}
+
+	@else {
+			text-indent: 110%;
+			white-space: nowrap;
+			overflow: hidden;
+	}
+}
+
+// * Appends the relative path to the images folder to the given URL
+// * Usage: background-image: image-url("bg-body.jpg")
+// * $image-path is defined in _config.scss
+@function image-url($url){
+	@return url("#{$image-path}#{$url}");
+}
+
 // Grid Calculation in percentage
 @function grid-size($size: 12, $column-count: 12) {
 	@return 100% / $column-count * $size;
+}
+
+// Photoshop letter Tracking -> CSS Letter Spacing
+@function ls($ps-value) {
+	@return $ps-value / 1000 * 16px;
+}
+
+// All in one input placeholder styling
+@mixin input-placeholder {
+	&.placeholder {
+			@content;
+	}
+
+	&:-moz-placeholder {
+			@content;
+	}
+
+	&::-moz-placeholder {
+			@content;
+	}
+
+	&:-ms-input-placeholder {
+			@content;
+	}
+
+	&::-webkit-input-placeholder {
+			@content;
+	}
+}
+
+%lazy-loading {
+	&:not(.lazy-loaded) {
+			background: url('/images/layout/loading.svg') no-repeat center center;
+	}
+}
+
+// fixes a chromium bug where lazyloading a background image does not 
+// trigger a repaint, and therefore the image does not display until a repaint happens
+// this forces the repaint
+.lazy-bg:not(.lazy-loaded) {
+	opacity: .99
+}
+
+@mixin responsive-image($image-name, $breakpoints, $lazyloading) {
+	$fileType: "";
+
+	@if str-index($image-name, '/images') == null {
+			@if str-index($image-name, '/') != 1 {
+					$image-name: '/images/#{$image-name}';
+			}
+
+			@else {
+					$image-name: '/images#{$image-name}';
+			}
+	}
+
+	$tempName: $image-name;
+	$position: get_last_occurrence($image-name, '/');
+
+	@if $lazyloading == true {
+			@extend %lazy-loading;
+
+			&.lazy-loaded {
+					background-image: url('#{$image-name}');
+			}
+	}
+
+	@else {
+			background-image: url('#{$image-name}');
+	}
+
+	@for $i from length($breakpoints) * -1 through -1 {
+			$ci: nth($breakpoints, abs($i));
+
+			@include breakpoint($ci, max) {
+					@if $lazyloading == true {
+							&.lazy-loaded {
+									background-image: url('#{str_insert($image-name, #{$ci}-, $position + 1)}');
+							}
+					}
+
+					@else {
+							background-image: url('#{str_insert($image-name, #{$ci}-, $position + 1)}');
+					}
+			}
+	}
+}
+
+@function get_last_occurrence($string, $search) {
+	$temp: $string;
+
+	@while str-index($temp, $search) != null {
+			$current: str-index($temp, $search);
+			$temp: str-slice($temp, (str-length($temp) - $current) * -1, -1);
+	}
+
+	$position: str-length($string) - str-length($temp);
+
+	@return $position;
+}
+
+@function to-string($value) {
+	@return inspect($value);
+}
+
+/**
+* create a class for each breakpoint to use like the fw grid classes
+*/
+@mixin for-each-breakpoint($mixinName) {
+	@each $breakpointName, $list in $gridMap {
+			.#{$breakpointName}-#{$mixinName} {
+					@include breakpoint(#{$breakpointName}) {
+							@content;
+					}
+			}
+	}
+}
+
+/**
+* CALC NEW GAP
+* @param {String} $gap - New Gap for the Col's
+* @output Conversion of the distances between the cols in the inner row
+*/
+@mixin calc-gap($gap) {
+	@if $gap == 0 or $gap == 0px {
+			$gap: 0px;
+	}
+
+	@else {
+			$gap: rem($gap);
+	}
+
+	&.row {
+			&:has(> .col) {
+					margin-left: -#{$gap};
+					max-width: calc(100% + (#{$gap} * 2));
+					width: calc(100% + (#{$gap} *2));
+
+					>.col {
+							padding-left: $gap;
+							padding-right: $gap;
+					}
+			}
+	}
 }

@@ -1,0 +1,20 @@
+/**
+* turns a row into a horizontal pure css slider
+*/
+@mixin row-slider() {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+
+    > .col {
+        scroll-snap-align: center;
+    }
+}
+
+// usage
+// .slider {
+//     @include breakpoint(large, max) {
+//         @include row-slider()
+//     }
+// }

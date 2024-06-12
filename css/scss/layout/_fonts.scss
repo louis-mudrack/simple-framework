@@ -1,0 +1,17 @@
+// Use this for default Icomoon
+
+@include font-face-V2(
+ $font-name: "icomoon",
+ $file-name: "icomoon",
+ $types: (woff, svg),
+ $style: normal,
+);
+
+// Use this for Poppins
+
+@include font-face-V2(
+	$font-name: "Poppins", 
+	$file-name: "poppins-v21-latin", 
+	$weights: ("300", "400", "600"), 
+	$types: all
+);

@@ -1,0 +1,47 @@
+:root {
+  --image-path: #{$image-path};
+
+  --base-font-size: #{rem($base-font-size)};
+  --base-line-height: #{rem($base-line-height)};
+
+  --h1-size: #{rem($h1-size)};
+  --h2-size: #{rem($h2-size)};
+  --h3-size: #{rem($h3-size)};
+  --h4-size: #{rem($h4-size)};
+  --h5-size: #{rem($h5-size)};
+  --h6-size: #{rem($h6-size)};
+
+  --main-font: #{$main-font};
+  --display-font: #{$display-font};
+  --icon-font: #{$icon-font};
+
+  --primary: #{$primary};
+  --secondary: #{$secondary};
+  --light: #{$light};
+  --medium: #{$medium};
+  --dark: #{$dark};
+  --border: #{$border};
+  --warn: #{$warn};
+
+  --base-gap: #{rem($base-gap)};
+  --row-max-width: #{rem($rowMaxWidth)};
+  --column-count: #{$column-count};
+
+  --space-sm-min: #{nth($space-sm, 1)};
+  --space-sm-max: #{nth($space-sm, 2)};
+  --space-md-min: #{nth($space-md, 1)};
+  --space-md-max: #{nth($space-md, 2)};
+  --space-lg-min: #{nth($space-lg, 1)};
+  --space-lg-max: #{nth($space-lg, 2)};
+  --space-xl-min: #{nth($space-xl, 1)};
+  --space-xl-max: #{nth($space-xl, 2)};
+
+  --base-border: #{$base-border};
+  --base-border-radius: #{$base-border-radius};
+  --base-box-shadow: #{$base-box-shadow};
+  --base-outline: #{$base-outline};
+  --outline: #{$outline};
+
+  --bp-context: #{$bpContext};
+  --hide-text-direction: #{$hide-text-direction};
+}

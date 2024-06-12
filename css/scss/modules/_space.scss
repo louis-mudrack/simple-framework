@@ -1,0 +1,165 @@
+/**
+* _space function 
+* @use _scale function from _typography.scss 
+* if min distance is less than $base-line-height then use $base-line-height
+*/
+@function _space($deduct: 0, $min-value: 0, $max-value: 0, $negative: null) {
+  @if $deduct != 0 {
+      $deduct: $base-line-height;
+  }
+  
+  $min-value: $min-value - $deduct;
+  $max-value: $max-value - $deduct;
+
+  @if $negative == null {
+      @if $min-value < $base-line-height {
+          $min-value: $base-line-height;
+      }
+  
+      @if $max-value < $base-line-height {
+          $max-value: $base-line-height;
+      }
+  
+      @return _scale($max-value, $min-value);
+      
+  } @else {
+      @return calc(#{_scale($max-value, $min-value)} * -1);
+  }
+}
+
+/**
+* create space class for top and bottom distance with padding/margin-block-start/end
+* if min distance is less than $base-line-height then use $base-line-height
+*/
+$spaceMap: (
+padding: (
+  sm: (min start nth($space-sm, 1), max end nth($space-sm, 2)),
+  md: (min start nth($space-md, 1), max end nth($space-md, 2)),
+  lg: (min start nth($space-lg, 1), max end nth($space-lg, 2)),
+  xl: (min start nth($space-xl, 1), max end nth($space-xl, 2))
+),
+margin: (
+  sm: (min start nth($space-sm, 1), max end nth($space-sm, 2)),
+  md: (min start nth($space-md, 1), max end nth($space-md, 2)),
+  lg: (min start nth($space-lg, 1), max end nth($space-lg, 2)),
+  xl: (min start nth($space-xl, 1), max end nth($space-xl, 2))
+)
+);
+
+@mixin get-no-distance($a, $b: null, $c: null) {
+  $property: padding;
+                  
+  @if $a != $property {
+      $property: margin
+  }
+
+  @if ($a == padding or $a == margin) and $b == null and $c == null {
+      .#{$a} {
+          &-no-top {
+              #{$property}-block-start: 0;
+          }
+      
+          &-no-bottom {
+              #{$property}-block-end: 0;
+          }
+      }
+
+  } @else {
+      &-no-#{$c} {
+          #{$property}-block-#{$b}: 0;
+      }
+  }
+}
+
+@mixin get-propertys($class, $property, $direction, $name, $value, $val) {
+  #{$property}-block-#{$direction}: _space(index(($val), ($name $direction $value)) - 1, nth(nth($val, 1), 3), nth(nth($val, 2), 3));
+                                          
+  @if $direction == start {
+      &-top {
+          #{$property}-block-#{$direction}: _space(index(($val), ($name $direction $value)) - 1, nth(nth($val, 1), 3), nth(nth($val, 2), 3));
+      }
+
+      @if $property == margin {
+          &-top-n {
+              #{$property}-block-#{$direction}: _space(index(($val), ($name $direction $value)) - 1, nth(nth($val, 1), 3), nth(nth($val, 2), 3), n);
+          }
+      }
+
+      @include get-no-distance($class, start, top);
+
+  } @else if $direction == end {
+      &-bottom {
+          #{$property}-block-#{$direction}: _space(index(($val), ($name $direction $value)) - 1, nth(nth($val, 1), 3), nth(nth($val, 2), 3));
+      }
+
+      &-bottom-equal {
+          #{$property}-block-#{$direction}: _space(0, nth(nth($val, 1), 3), nth(nth($val, 2), 3));
+      }
+
+      @if $property == margin {
+          &-bottom-n {
+              #{$property}-block-#{$direction}: _space(index(($val), ($name $direction $value)) - 1, nth(nth($val, 1), 3), nth(nth($val, 2), 3), n);
+          }
+
+          &-bottom-equal-n {
+              #{$property}-block-#{$direction}: _space(0, nth(nth($val, 1), 3), nth(nth($val, 2), 3), n);
+          }
+      }
+
+      @include get-no-distance($class, end, bottom);
+  }
+}
+
+@mixin create-space($spaceDirection, $breakpointName: null, $spaceSize: null) {
+  @each $class, $obj in $spaceMap {
+      $property: $spaceDirection;
+      
+      @if $breakpointName != null {
+          @include breakpoint(#{$breakpointName}) {
+              @if $spaceDirection == $class {
+                  .#{$breakpointName}-#{$class} {
+                      @each $key, $val in $obj {
+                          @if $spaceSize == $key {
+                              &-#{$key} {
+                                  @each $name, $direction, $value in $val {
+                                      @include get-propertys($class, $property, $direction, $name, $value, $val);
+                                  }
+                              }
+                          }
+                      }
+                  }   
+              }
+          }
+      } @else {
+          @if $spaceDirection == $class {
+              .#{$class} {
+                  @each $key, $val in $obj {
+                      @if $key == sm or $key == md or $key == lg or $key == xl {
+                          &-#{$key} {
+                              @each $name, $direction, $value in $val {
+                                  @include get-propertys($class, $property, $direction, $name, $value, $val);
+                              }
+                          }
+                      }
+                  }
+              }
+              
+              @include get-no-distance($class);
+          }
+      }
+  }
+}
+
+@mixin margin($breakpointName: null, $spaceSize: null) {
+  @include create-space(margin, $breakpointName, $spaceSize);
+}
+
+@mixin padding($breakpointName: null, $spaceSize: null) {
+  @include create-space(padding, $breakpointName, $spaceSize);
+}
+
+@include padding();
+@include margin();
+
+// @include padding(giant, xl);
+// @include margin(small, xl);
