@@ -78,8 +78,8 @@ Use Notifications to give the user information after an action.
 LazyLoad your images and iframes for a better performance.
 
 ```html
-  <img class="lazy-load" data-src="path/to/your/image.jpg" alt="Description">
-  <iframe class="lazy-load" data-src="https://www.example.com" frameborder="0"></iframe>
+  <img class="lazy-load" data-src="path/to/your/image.jpg">
+  <iframe class="lazy-load" data-src="https://www.example.com"></iframe>
 ```
 
 ### LazyAnimations
@@ -108,6 +108,21 @@ Utilize Helper Classes to level up your workflow. These are only a few:
   .highlight
   .hidden
   .video-container
+```
+
+### Lightbox / Gallery
+
+Display your images in a way a user can really see them. Yes it works with LazyLoad.
+
+```html
+  // For single images
+  <img data-lightbox="enabled" data-src="path/to/your/image.jpg">
+
+  // For multiple images used in a gallery
+  <div class="lightbox-gallery">
+    <img data-gallery="enabled" data-src="path/to/your/image.jpg">
+    <img data-gallery="enabled" data-src="path/to/your/image.jpg">
+  </div>
 ```
 
 ## Contributing
