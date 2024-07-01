@@ -38,5 +38,3 @@ export class LazyLoad {
     new LazyLoad(selector);
   }
 }
-
-document.addEventListener('DOMContentLoaded', () => LazyLoad.init());
